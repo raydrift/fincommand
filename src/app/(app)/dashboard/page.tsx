@@ -1,6 +1,7 @@
 'use client';
 
 import { AlertCircle, TrendingUp } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { SafetyGauge, ImmediateActions, EmergencyFundTracker } from '@/components/dashboard';
 import { useCashFlowProjection, useFinancialMetrics } from '@/lib/hooks';
 
@@ -70,35 +71,61 @@ export default function DashboardPage() {
   return (
     <div className="p-6 space-y-8">
       {/* Header */}
-      <div>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <h1 className="text-4xl font-bold text-slate-900">Dashboard</h1>
         <p className="text-slate-500 mt-2">Welcome to FinCommand – Your Safety-First Financial Dashboard</p>
-      </div>
+      </motion.div>
 
       {/* Safety Gauge */}
-      <SafetyGauge
-        minBalance={projection.minBalance}
-        currentBalance={currentBalance}
-        safetyBuffer={safetyBuffer}
-        status={getStatus()}
-      />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
+        <SafetyGauge
+          minBalance={projection.minBalance}
+          currentBalance={currentBalance}
+          safetyBuffer={safetyBuffer}
+          status={getStatus()}
+        />
+      </motion.div>
 
       {/* Grid Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Immediate Actions - Full Width on Mobile, 2 Cols on Desktop */}
-        <div className="lg:col-span-2">
+        <motion.div
+          className="lg:col-span-2"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           <ImmediateActions actions={actions} />
-        </div>
+        </motion.div>
 
         {/* Emergency Fund - Sidebar */}
-        <EmergencyFundTracker
-          current={Math.max(currentBalance - safetyBuffer, 0)}
-          goal={metrics.emergencyFundGoal}
-        />
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <EmergencyFundTracker
+            current={Math.max(currentBalance - safetyBuffer, 0)}
+            goal={metrics.emergencyFundGoal}
+          />
+        </motion.div>
       </div>
 
       {/* Metrics Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4">
           <p className="text-xs text-slate-500 uppercase tracking-wide font-medium mb-2">
             Monthly Surplus
@@ -134,11 +161,16 @@ export default function DashboardPage() {
             {metrics.debtFreeDate || 'N/A'}
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Danger Days Info */}
       {projection.dangerDays.length > 0 && (
-        <div className="bg-red-50 border border-red-200 rounded-xl p-5">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="bg-red-50 border border-red-200 rounded-xl p-5"
+        >
           <h3 className="font-semibold text-red-900 mb-2">Danger Days Ahead</h3>
           <p className="text-sm text-red-800 mb-3">
             Your balance will drop below your safety buffer on {projection.dangerDays.length} days in the next 31 days.
@@ -147,7 +179,7 @@ export default function DashboardPage() {
             Lowest point: <span className="font-bold">${projection.minBalance.toFixed(2)}</span> on{' '}
             <span className="font-bold">{projection.minBalanceDate.toLocaleDateString()}</span>
           </p>
-        </div>
+        </motion.div>
       )}
     </div>
   );

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 import {
   BarChart3,
   Calendar,
@@ -58,18 +59,20 @@ export function Sidebar() {
         {navLinks.map((link) => {
           const isActive = pathname === link.href;
           return (
-            <Link key={link.href} href={link.href}>
-              <div
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
-                  isActive
-                    ? 'bg-slate-700 text-white'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                }`}
-              >
-                {link.icon}
-                <span className="font-medium">{link.label}</span>
-              </div>
-            </Link>
+            <motion.div key={link.href} whileHover={{ x: 4 }} whileTap={{ scale: 0.98 }}>
+              <Link href={link.href}>
+                <div
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
+                    isActive
+                      ? 'bg-slate-700 text-white'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                  }`}
+                >
+                  {link.icon}
+                  <span className="font-medium">{link.label}</span>
+                </div>
+              </Link>
+            </motion.div>
           );
         })}
       </nav>
