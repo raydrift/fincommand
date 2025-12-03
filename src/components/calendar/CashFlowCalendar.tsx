@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
-import { format, getDate, isSameDay } from 'date-fns';
+import { format, getDate } from 'date-fns';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import type { RecurringTransaction } from '@/types/financial';
 
