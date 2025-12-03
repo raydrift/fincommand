@@ -24,7 +24,7 @@ export default function Home() {
           Safety-First Financial Dashboard
         </h1>
         <p className="text-xl text-slate-600 mb-8 max-w-2xl mx-auto">
-          Prevent cash-flow gaps before they happen. FinCommand visualizes your "Danger Zone" — the dates where bills exceed cash on hand — and provides strategic tools for debt elimination and wealth building.
+          Prevent cash-flow gaps before they happen. FinCommand visualizes your &quot;Danger Zone&quot; &mdash; the dates where bills exceed cash on hand &mdash; and provides strategic tools for debt elimination and wealth building.
         </p>
         <Link href="/dashboard">
           <Button className="bg-slate-900 hover:bg-slate-800 h-12 px-8 text-lg">
@@ -50,7 +50,7 @@ export default function Home() {
                 </h3>
               </div>
               <p className="text-slate-600">
-                Know exactly when your balance will drop below your safety buffer, so you can take action before it's too late.
+                Know exactly when your balance will drop below your safety buffer, so you can take action before it&apos;s too late.
               </p>
             </div>
 
