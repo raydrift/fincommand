@@ -1,26 +1,54 @@
+'use client';
+
+import { AdvisorContainer } from '@/components/advisor';
+import { Debt } from '@/types/financial';
+
+// Demo data
+const DEMO_DEBTS: Debt[] = [
+  {
+    id: '1',
+    userId: 'demo-user',
+    name: 'Credit Card (Visa)',
+    balance: 3500,
+    rate: 0.22,
+    minPayment: 100,
+    createdAt: new Date(),
+  },
+  {
+    id: '2',
+    userId: 'demo-user',
+    name: 'Student Loan',
+    balance: 15000,
+    rate: 0.05,
+    minPayment: 200,
+    createdAt: new Date(),
+  },
+  {
+    id: '3',
+    userId: 'demo-user',
+    name: 'Personal Loan',
+    balance: 5200,
+    rate: 0.12,
+    minPayment: 150,
+    createdAt: new Date(),
+  },
+];
+
 export default function AdvisorPage() {
   return (
     <div className="p-6 space-y-8">
       <div>
         <h1 className="text-4xl font-bold text-slate-900">Smart Advisor</h1>
-        <p className="text-slate-500 mt-2">Compare debt elimination vs. wealth building strategies</p>
+        <p className="text-slate-500 mt-2">Personalized financial guidance based on your situation</p>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-xl shadow-sm border border-emerald-200 p-5">
-          <h2 className="text-lg font-semibold text-slate-900 mb-2">Guaranteed Return</h2>
-          <p className="text-sm text-slate-600 mb-4">Interest saved from debt payoff</p>
-          <div className="h-48 bg-slate-100 rounded-lg flex items-center justify-center">
-            <span className="text-slate-500">Coming in Phase 4</span>
-          </div>
-        </div>
-        <div className="bg-white rounded-xl shadow-sm border border-indigo-200 p-5">
-          <h2 className="text-lg font-semibold text-slate-900 mb-2">Compound Growth</h2>
-          <p className="text-sm text-slate-600 mb-4">Wealth building potential</p>
-          <div className="h-48 bg-slate-100 rounded-lg flex items-center justify-center">
-            <span className="text-slate-500">Coming in Phase 4</span>
-          </div>
-        </div>
-      </div>
+
+      <AdvisorContainer
+        debts={DEMO_DEBTS}
+        currentBalance={5200}
+        monthlyIncome={3500}
+        monthlyExpenses={1800}
+        safetyBuffer={1500}
+      />
     </div>
   );
 }
