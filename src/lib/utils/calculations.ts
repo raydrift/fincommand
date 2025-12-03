@@ -32,14 +32,10 @@ export const calculateCompoundGrowth = (
   return principal * Math.pow(1 + annualRate, years);
 };
 
-interface DebtItem {
-  balance: number;
-  [key: string]: unknown;
-}
-
 /**
  * Snowball method: sort debts by smallest balance first
  */
-export const sortDebtsBySnowball = (debts: DebtItem[]): DebtItem[] => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const sortDebtsBySnowball = (debts: any[]) => {
   return [...debts].sort((a, b) => a.balance - b.balance);
 };
