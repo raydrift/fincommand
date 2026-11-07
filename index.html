@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Investment Command Center</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* ── Layout: financial command center — dense data grid, breathing gutters ── */
+:root {
+  --bg: #f7f7f5;
+  --bg-card: #ffffff;
+  --bg-card-alt: #fafaf8;
+  --fg: #1a1a18;
+  --fg-secondary: #5a5950;
+  --fg-muted: #8a897f;
+  --border: #e6e5df;
+  --border-light: #f0efea;
+  --accent: #2a78d6;
+  --accent-light: #e8f0fb;
+  --gain: #0a8a4f;
+  --gain-bg: #e8f7ef;
+  --loss: #d03b3b;
+  --loss-bg: #fceaea;
+  --warn: #c98500;
+  --warn-bg: #fef7e6;
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --india-accent: #1baf7a;
+  --us-accent: #2a78d6;
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111110;
+    --bg-card: #1c1c1a;
+    --bg-card-alt: #222220;
+    --fg: #edece8;
+    --fg-secondary: #b5b4ab;
+    --fg-muted: #7a796f;
+    --border: #2e2e2b;
+    --border-light: #252523;
+    --accent: #3987e5;
+    --accent-light: #1e2d42;
+    --gain: #1db96a;
+    --gain-bg: #112a1c;
+    --loss: #e66767;
+    --loss-bg: #2e1515;
+    --warn: #eda100;
+    --warn-bg: #2e2510;
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --india-accent: #199e70;
+    --us-accent: #3987e5;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111110;
+  --bg-card: #1c1c1a;
+  --bg-card-alt: #222220;
+  --fg: #edece8;
+  --fg-secondary: #b5b4ab;
+  --fg-muted: #7a796f;
+  --border: #2e2e2b;
+  --border-light: #252523;
+  --accent: #3987e5;
+  --accent-light: #1e2d42;
+  --gain: #1db96a;
+  --gain-bg: #112a1c;
+  --loss: #e66767;
+  --loss-bg: #2e1515;
+  --warn: #eda100;
+  --warn-bg: #2e2510;
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --india-accent: #199e70;
+  --us-accent: #3987e5;
+  color-scheme: dark;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 16px;
+  padding-block: 0;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+/* ── Typography ── */
+.mono { font-family: 'Space Mono', monospace; }
+h1, h2, h3 { text-wrap: balance; }
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 12px;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 0 16px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  color: #fff; font-weight: 700; font-size: 16px;
+}
+.header h1 { font-size: 20px; font-weight: 700; }
+.header-subtitle { font-size: 12px; color: var(--fg-muted); }
+.last-updated { font-size: 11px; color: var(--fg-muted); }
+
+/* ── Theme toggle ── */
+.theme-toggle {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--fg-muted);
+  line-height: 1;
+}
+.theme-toggle:hover { color: var(--fg); }
+
+/* ── Nav tabs ── */
+.nav-tabs {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-card-alt);
+  border-radius: var(--radius);
+  padding: 3px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.nav-tab {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  border: none;
+  background: none;
+  border-radius: 7px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.nav-tab:hover { color: var(--fg); }
+.nav-tab.active {
+  background: var(--bg-card);
+  color: var(--fg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+/* ── Stat tiles ── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.stat-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  margin-bottom: 6px;
+}
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.stat-delta {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.stat-delta.up { color: var(--gain); background: var(--gain-bg); }
+.stat-delta.down { color: var(--loss); background: var(--loss-bg); }
+
+/* ── Main grid ── */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 800px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Tables ── */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.data-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.data-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:hover td { background: var(--bg-card-alt); }
+.data-table .num { font-variant-numeric: tabular-nums; text-align: right; font-family: 'Space Mono', monospace; font-size: 12px; }
+
+/* ── Market chips ── */
+.market-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+.market-chip.india { background: rgba(27,175,122,0.12); color: var(--india-accent); }
+.market-chip.us { background: rgba(42,120,214,0.12); color: var(--us-accent); }
+
+/* ── Badge ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+.badge.active { background: var(--gain-bg); color: var(--gain); }
+.badge.paused { background: var(--warn-bg); color: var(--warn); }
+.badge.opportunity { background: var(--accent-light); color: var(--accent); }
+.badge.urgent { background: var(--loss-bg); color: var(--loss); }
+
+/* ── Opportunity cards ── */
+.opp-list { display: flex; flex-direction: column; gap: 10px; }
+.opp-card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card-alt);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.opp-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.opp-title { font-size: 13px; font-weight: 600; }
+.opp-detail { font-size: 12px; color: var(--fg-secondary); line-height: 1.4; }
+
+/* ── Strategy panel ── */
+.strategy-block {
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-card-alt);
+}
+.strategy-block + .strategy-block { margin-top: 10px; }
+.strategy-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.strategy-flag {
+  width: 4px; height: 28px;
+  border-radius: 2px;
+}
+.alloc-bar {
+  display: flex;
+  height: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+  gap: 2px;
+  margin-top: 8px;
+}
+.alloc-seg { border-radius: 3px; }
+.alloc-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 11px; color: var(--fg-secondary); }
+.alloc-legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
+
+/* ── Burst log ── */
+.burst-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 13px;
+}
+.burst-row:last-child { border-bottom: none; }
+
+/* ── Thresholds ── */
+.threshold-meter {
+  position: relative;
+  height: 6px;
+  background: var(--border-light);
+  border-radius: 3px;
+  margin-top: 8px;
+}
+.threshold-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.3s;
+}
+.threshold-mark {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 12px;
+  border-radius: 1px;
+  background: var(--fg-muted);
+}
+
+/* ── Chart containers ── */
+.chart-area {
+  width: 100%;
+  overflow-x: auto;
+}
+.chart-area svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Sections ── */
+.section { margin-bottom: 20px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+/* ── Footer ── */
+.footer {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 20px;
+  font-size: 11px;
+  color: var(--fg-muted);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* ── Tab panels ── */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Responsive ── */
+@media (max-width: 500px) {
+  .stat-grid { grid-template-columns: 1fr 1fr; }
+  .stat-value { font-size: 20px; }
+  .header h1 { font-size: 17px; }
+  body { padding: 12px; }
+}
+
+/* ── Scrollable table ── */
+.table-wrap { overflow-x: auto; min-width: 0; }
+
+/* ── Sparkline ── */
+.sparkline { display: inline-block; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ HEADER ═══════════ -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">IC</div>
+    <div>
+      <h1>Investment Command Center</h1>
+      <div class="header-subtitle">India + US · Dual-Market Portfolio Intelligence</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌓</button>
+    <div class="last-updated" id="lastUpdated">Last sync: Nov 7, 2026</div>
+  </div>
+</div>
+
+<!-- ═══════════ NAV ═══════════ -->
+<nav class="nav-tabs" role="tablist">
+  <button class="nav-tab active" role="tab" data-tab="overview" aria-selected="true">Overview</button>
+  <button class="nav-tab" role="tab" data-tab="india">India Portfolio</button>
+  <button class="nav-tab" role="tab" data-tab="us">US Portfolio</button>
+  <button class="nav-tab" role="tab" data-tab="sip">SIP Tracker</button>
+  <button class="nav-tab" role="tab" data-tab="burst">Burst Log</button>
+  <button class="nav-tab" role="tab" data-tab="opportunities">Opportunities</button>
+  <button class="nav-tab" role="tab" data-tab="strategy">Strategy</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB: OVERVIEW                              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="tab-panel active" id="panel-overview">
+
+  <!-- Stat tiles -->
+  <div class="stat-grid">
+    <div class="stat-tile">
+      <div class="stat-label">Total Invested</div>
+      <div class="stat-value">₹22,818</div>
+      <div class="stat-delta up">+ ~$100 US</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Current Value</div>
+      <div class="stat-value">₹24,453</div>
+      <div class="stat-delta up">▲ ₹1,635</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Portfolio XIRR</div>
+      <div class="stat-value mono" style="color:var(--gain)">9.48%</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Monthly Budget</div>
+      <div class="stat-value">₹15K <span style="font-size:14px;color:var(--fg-muted)">+ $100</span></div>
+    </div>
+  </div>
+
+  <!-- Portfolio split chart + Allocation -->
+  <div class="main-grid">
+    <!-- India holdings -->
+    <div class="card">
+      <div class="section-header">
+        <div class="section-title" style="margin:0"><span class="market-chip india">🇮🇳 India</span> Holdings</div>
+        <span style="font-size:12px;color:var(--fg-muted)">₹24,453 current</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Fund</th><th class="num">Invested</th><th class="num">Current</th><th class="num">Return</th><th class="num">XIRR</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>ABSL ELSS Tax Saver</strong><br><span style="font-size:11px;color:var(--fg-muted)">Direct · Growth</span></td>
+              <td class="num">₹13,832</td>
+              <td class="num">₹15,180</td>
+              <td class="num" style="color:var(--gain)">+9.74%</td>
+              <td class="num">7.68%</td>
+            </tr>
+            <tr>
+              <td><strong>SBI Contra Fund</strong><br><span style="font-size:11px;color:var(--loss)">⚠ Regular · External</span></td>
+              <td class="num">₹5,000</td>
+              <td class="num">₹5,003</td>
+              <td class="num" style="color:var(--fg-muted)">+0.05%</td>
+              <td class="num" style="color:var(--loss)">1.90%</td>
+            </tr>
+            <tr>
+              <td><strong>Axis Small Cap</strong><br><span style="font-size:11px;color:var(--fg-muted)">Direct · Growth</span></td>
+              <td class="num">₹3,986</td>
+              <td class="num">₹4,271</td>
+              <td class="num" style="color:var(--gain)">+7.14%</td>
+              <td class="num" style="color:var(--gain)">13.75%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- US holdings -->
+    <div class="card">
+      <div class="section-header">
+        <div class="section-title" style="margin:0"><span class="market-chip us">🇺🇸 US</span> Holdings</div>
+        <span style="font-size:12px;color:var(--fg-muted)">$100/mo via Webull</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Ticker</th><th>Name</th><th>Category</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono"><strong>SPY</strong></td><td>SPDR S&P 500 ETF</td><td><span class="badge active">Core</span></td></tr>
+            <tr><td class="mono"><strong>NVDA</strong></td><td>Nvidia</td><td><span class="badge opportunity">Growth</span></td></tr>
+            <tr><td class="mono"><strong>AAPL</strong></td><td>Apple</td><td><span class="badge opportunity">Growth</span></td></tr>
+            <tr><td class="mono"><strong>GOOGL</strong></td><td>Alphabet</td><td><span class="badge opportunity">Growth</span></td></tr>
+            <tr><td class="mono"><strong>AVGO</strong></td><td>Broadcom</td><td><span class="badge opportunity">Growth</span></td></tr>
+            <tr><td class="mono"><strong>TSLA</strong></td><td>Tesla</td><td><span class="badge opportunity">Growth</span></td></tr>
+            <tr><td class="mono"><strong>ORCL</strong></td><td>Oracle</td><td><span class="badge opportunity">Growth</span></td></tr>
+            <tr><td class="mono"><strong>GLD</strong></td><td>SPDR Gold</td><td><span class="badge paused">Hedge</span></td></tr>
+            <tr><td class="mono"><strong>JNK</strong></td><td>High Yield Bond</td><td><span class="badge paused">Income</span></td></tr>
+            <tr><td class="mono"><strong>BIL</strong></td><td>1-3 Month T-Bill</td><td><span class="badge paused">Cash</span></td></tr>
+            <tr><td class="mono"><strong>SHY</strong></td><td>1-3 Year Treasury</td><td><span class="badge paused">Income</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action items -->
+  <div class="card" style="border-left: 3px solid var(--warn); margin-bottom: 20px;">
+    <div class="section-title">⚡ Action Items</div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
+      <div style="display:flex;align-items:start;gap:8px;">
+        <span class="badge urgent">Urgent</span>
+        <span><strong>Switch SBI Contra from Regular to Direct plan</strong> — saving ~0.8–1.5% in expense ratio annually. Current XIRR of 1.90% is largely eaten by fees.</span>
+      </div>
+      <div style="display:flex;align-items:start;gap:8px;">
+        <span class="badge paused">Review</span>
+        <span><strong>ABSL ELSS Tax Saver</strong> — ELSS 80C deduction doesn't apply to US tax returns (H-1B). Evaluate whether the 3-year lock-in is justified purely on fund performance.</span>
+      </div>
+      <div style="display:flex;align-items:start;gap:8px;">
+        <span class="badge paused">Review</span>
+        <span><strong>US portfolio: 11 positions on $100/mo</strong> — over-diversified. Consider consolidating to 3–4 core positions (SPY + 2–3 conviction picks).</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB: INDIA PORTFOLIO                       -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-india">
+  <div class="stat-grid">
+    <div class="stat-tile">
+      <div class="stat-label">India Invested</div>
+      <div class="stat-value">₹22,818</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">India Current</div>
+      <div class="stat-value" style="color:var(--gain)">₹24,453</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Overall Return</div>
+      <div class="stat-value mono" style="color:var(--gain)">+7.17%</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">India XIRR</div>
+      <div class="stat-value mono">9.48%</div>
+    </div>
+  </div>
+
+  <!-- Allocation bar -->
+  <div class="card" style="margin-bottom:16px;">
+    <div class="section-title">Allocation Breakdown</div>
+    <div class="alloc-bar">
+      <div class="alloc-seg" style="flex:62.1;background:var(--series-1)"></div>
+      <div class="alloc-seg" style="flex:20.5;background:var(--series-2)"></div>
+      <div class="alloc-seg" style="flex:17.5;background:var(--series-3)"></div>
+    </div>
+    <div class="alloc-legend">
+      <span><span class="alloc-legend-dot" style="background:var(--series-1)"></span>ABSL ELSS 62%</span>
+      <span><span class="alloc-legend-dot" style="background:var(--series-2)"></span>SBI Contra 20%</span>
+      <span><span class="alloc-legend-dot" style="background:var(--series-3)"></span>Axis Small Cap 17%</span>
+    </div>
+  </div>
+
+  <!-- Detailed holdings -->
+  <div class="card">
+    <div class="section-title">Holdings Detail</div>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Fund</th><th>Plan</th><th class="num">Invested</th><th class="num">Current</th><th class="num">Abs Return</th><th class="num">XIRR</th><th>Flag</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>ABSL ELSS Tax Saver</strong></td><td>Direct</td>
+            <td class="num">₹13,832</td><td class="num">₹15,180</td>
+            <td class="num" style="color:var(--gain)">+₹1,348</td>
+            <td class="num">7.68%</td>
+            <td><span class="badge paused">ELSS Lock-in</span></td>
+          </tr>
+          <tr>
+            <td><strong>SBI Contra Fund</strong></td><td style="color:var(--loss)">Regular ⚠</td>
+            <td class="num">₹5,000</td><td class="num">₹5,003</td>
+            <td class="num" style="color:var(--fg-muted)">+₹3</td>
+            <td class="num" style="color:var(--loss)">1.90%</td>
+            <td><span class="badge urgent">Switch to Direct</span></td>
+          </tr>
+          <tr>
+            <td><strong>Axis Small Cap</strong></td><td>Direct</td>
+            <td class="num">₹3,986</td><td class="num">₹4,271</td>
+            <td class="num" style="color:var(--gain)">+₹285</td>
+            <td class="num" style="color:var(--gain)">13.75%</td>
+            <td><span class="badge active">Top Performer</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Nifty PE gauge -->
+  <div class="card" style="margin-top:16px;">
+    <div class="section-title">Market Valuation — Nifty 50 PE</div>
+    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+      <span style="font-size:28px;font-weight:700;" class="mono">19.07</span>
+      <span style="font-size:12px;color:var(--fg-muted)">5Y Median: 22.12</span>
+    </div>
+    <div class="threshold-meter">
+      <div class="threshold-fill" style="width:52%;background:var(--gain)"></div>
+      <div class="threshold-mark" style="left:45%;background:var(--loss)" title="Deploy threshold: PE < 18"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--fg-muted);margin-top:6px;">
+      <span>12 (cheap)</span>
+      <span style="color:var(--loss)">▼ Deploy < 18</span>
+      <span>30 (expensive)</span>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--fg-secondary);">
+      Current PE is 14% below 5Y median — market is reasonably valued. Reserve deployment threshold (PE &lt; 18) not yet triggered.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB: US PORTFOLIO                          -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-us">
+  <div class="stat-grid">
+    <div class="stat-tile">
+      <div class="stat-label">Monthly Budget</div>
+      <div class="stat-value">$100</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Positions</div>
+      <div class="stat-value">11</div>
+      <div class="stat-delta down">Over-diversified</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Per Position</div>
+      <div class="stat-value mono">~$9</div>
+      <div style="font-size:11px;color:var(--fg-muted);margin-top:4px;">Below meaningful scale</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-label">Recommended</div>
+      <div class="stat-value" style="font-size:18px;">$70 SPY + $30 reserve</div>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <div class="card">
+      <div class="section-title">Current Holdings — Webull</div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Ticker</th><th>Name</th><th>Type</th><th>Role</th></tr></thead>
+          <tbody>
+            <tr><td class="mono"><strong>SPY</strong></td><td>S&P 500 ETF</td><td>ETF</td><td>Core Index</td></tr>
+            <tr><td class="mono"><strong>GLD</strong></td><td>Gold ETF</td><td>ETF</td><td>Inflation Hedge</td></tr>
+            <tr><td class="mono"><strong>TSLA</strong></td><td>Tesla</td><td>Stock</td><td>High-Beta Growth</td></tr>
+            <tr><td class="mono"><strong>AAPL</strong></td><td>Apple</td><td>Stock</td><td>Large Cap Quality</td></tr>
+            <tr><td class="mono"><strong>AVGO</strong></td><td>Broadcom</td><td>Stock</td><td>Semiconductor</td></tr>
+            <tr><td class="mono"><strong>GOOGL</strong></td><td>Alphabet</td><td>Stock</td><td>Ad/Cloud/AI</td></tr>
+            <tr><td class="mono"><strong>NVDA</strong></td><td>Nvidia</td><td>Stock</td><td>AI Infrastructure</td></tr>
+            <tr><td class="mono"><strong>ORCL</strong></td><td>Oracle</td><td>Stock</td><td>Enterprise Cloud</td></tr>
+            <tr><td class="mono"><strong>JNK</strong></td><td>High Yield Bond</td><td>ETF</td><td>Income</td></tr>
+            <tr><td class="mono"><strong>BIL</strong></td><td>1-3 Mo T-Bill</td><td>ETF</td><td>Cash Equiv</td></tr>
+            <tr><td class="mono"><strong>SHY</strong></td><td>1-3 Yr Treasury</td><td>ETF</td><td>Short Duration</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Consolidation Recommendation</div>
+      <div style="font-size:13px;color:var(--fg-secondary);line-height:1.7;margin-bottom:14px;">
+        At $100/month across 11 positions, each position gets ~$9 — too thin for meaningful compounding. Recommended restructure:
+      </div>
+      <div class="strategy-block">
+        <div class="strategy-header">
+          <div class="strategy-flag" style="background:var(--us-accent)"></div>
+          <div><strong style="font-size:14px;">Core: $70/mo → SPY or VOO</strong></div>
+        </div>
+        <div style="font-size:12px;color:var(--fg-secondary)">Broad market exposure, lowest cost, highest diversification per dollar</div>
+      </div>
+      <div class="strategy-block">
+        <div class="strategy-header">
+          <div class="strategy-flag" style="background:var(--series-2)"></div>
+          <div><strong style="font-size:14px;">Reserve: $30/mo → Cash buffer</strong></div>
+        </div>
+        <div style="font-size:12px;color:var(--fg-secondary)">Deploy on S&P 500 corrections ≥ 10% from 52-week high</div>
+      </div>
+
+      <!-- S&P threshold gauge -->
+      <div style="margin-top:16px;">
+        <div class="section-title">S&P 500 Correction Monitor</div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
+          <span class="mono" style="font-size:20px;font-weight:700;">—</span>
+          <span style="font-size:12px;color:var(--fg-muted)">Update with current drawdown %</span>
+        </div>
+        <div class="threshold-meter">
+          <div class="threshold-fill" style="width:5%;background:var(--us-accent)"></div>
+          <div class="threshold-mark" style="left:33%;background:var(--loss)" title="Deploy threshold: -10%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--fg-muted);margin-top:6px;">
+          <span>0% (ATH)</span>
+          <span style="color:var(--loss)">▼ Deploy at -10%</span>
+          <span>-30% (crash)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB: SIP TRACKER                           -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-sip">
+  <div class="section-title">Active SIPs</div>
+  <div class="card" style="margin-bottom:16px;">
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr><th>Fund / Ticker</th><th>Market</th><th class="num">SIP Amount</th><th class="num">Frequency</th><th>Status</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>ABSL ELSS Tax Saver</strong></td>
+            <td><span class="market-chip india">🇮🇳</span></td>
+            <td class="num">₹—</td>
+            <td class="num">Monthly</td>
+            <td><span class="badge active">Active</span></td>
+            <td style="font-size:11px;color:var(--fg-muted)">ELSS, 3yr lock-in</td>
+          </tr>
+          <tr>
+            <td><strong>Axis Small Cap</strong></td>
+            <td><span class="market-chip india">🇮🇳</span></td>
+            <td class="num">₹—</td>
+            <td class="num">Monthly</td>
+            <td><span class="badge active">Active</span></td>
+            <td style="font-size:11px;color:var(--fg-muted)">Top performer, 13.75% XIRR</td>
+          </tr>
+          <tr>
+            <td><strong>SBI Contra Fund</strong></td>
+            <td><span class="market-chip india">🇮🇳</span></td>
+            <td class="num">₹—</td>
+            <td class="num">Monthly</td>
+            <td><span class="badge urgent">Review</span></td>
+            <td style="font-size:11px;color:var(--loss)">Regular plan — switch to Direct</td>
+          </tr>
+          <tr>
+            <td><strong>SPY (recommended)</strong></td>
+            <td><span class="market-chip us">🇺🇸</span></td>
+            <td class="num">$70</td>
+            <td class="num">Monthly</td>
+            <td><span class="badge opportunity">Proposed</span></td>
+            <td style="font-size:11px;color:var(--fg-muted)">Core US allocation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="main-grid">
+    <div class="card">
+      <div class="section-title">Recommended SIP Allocation — India ₹15,000/mo</div>
+      <div class="alloc-bar" style="height:10px;">
+        <div class="alloc-seg" style="flex:50;background:var(--series-1)"></div>
+        <div class="alloc-seg" style="flex:30;background:var(--series-3)"></div>
+        <div class="alloc-seg" style="flex:20;background:var(--series-4)"></div>
+      </div>
+      <div class="alloc-legend" style="margin-top:10px;">
+        <span><span class="alloc-legend-dot" style="background:var(--series-1)"></span>₹7,500 Nifty Index</span>
+        <span><span class="alloc-legend-dot" style="background:var(--series-3)"></span>₹4,500 Small Cap</span>
+        <span><span class="alloc-legend-dot" style="background:var(--series-4)"></span>₹3,000 Reserve</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="section-title">Recommended SIP Allocation — US $100/mo</div>
+      <div class="alloc-bar" style="height:10px;">
+        <div class="alloc-seg" style="flex:70;background:var(--series-1)"></div>
+        <div class="alloc-seg" style="flex:30;background:var(--series-4)"></div>
+      </div>
+      <div class="alloc-legend" style="margin-top:10px;">
+        <span><span class="alloc-legend-dot" style="background:var(--series-1)"></span>$70 SPY / VOO</span>
+        <span><span class="alloc-legend-dot" style="background:var(--series-4)"></span>$30 Cash Reserve</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB: BURST LOG                             -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-burst">
+  <div class="card">
+    <div class="section-header">
+      <div class="section-title" style="margin:0">Burst (Lump-Sum) Execution Log</div>
+      <span style="font-size:11px;color:var(--fg-muted)">Deployments during corrections</span>
+    </div>
+    <div style="padding:30px 0;text-align:center;color:var(--fg-muted);font-size:13px;">
+      <div style="font-size:28px;margin-bottom:8px;">📋</div>
+      <div>No burst executions recorded yet.</div>
+      <div style="margin-top:6px;font-size:12px;">When market correction thresholds are hit, recommended deployments and their outcomes will appear here.</div>
+    </div>
+    <div style="border-top:1px solid var(--border);padding-top:14px;margin-top:14px;">
+      <div class="section-title">Trigger Conditions</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
+        <div class="strategy-block">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+            <span class="market-chip india">🇮🇳</span>
+            <strong>Nifty PE &lt; 18</strong>
+          </div>
+          <div style="font-size:12px;color:var(--fg-secondary)">Deploy India reserve (₹3,000/mo accumulation) into Nifty index funds</div>
+        </div>
+        <div class="strategy-block">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+            <span class="market-chip us">🇺🇸</span>
+            <strong>S&P 500 ≥ -10%</strong>
+          </div>
+          <div style="font-size:12px;color:var(--fg-secondary)">Deploy US reserve ($30/mo accumulation) into SPY/VOO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB: OPPORTUNITIES                         -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-opportunities">
+  <div class="main-grid">
+    <div class="card">
+      <div class="section-title">🔔 Active Alerts</div>
+      <div class="opp-list">
+        <div class="opp-card" style="border-left: 3px solid var(--warn);">
+          <div class="opp-card-header">
+            <span class="opp-title">SBI Contra: Regular → Direct Switch</span>
+            <span class="badge urgent">Action Needed</span>
+          </div>
+          <div class="opp-detail">You're losing ~0.8–1.5% annually to the regular plan's higher expense ratio. At ₹5,000 invested, this costs ₹40–75/yr now but compounds as the position grows.</div>
+        </div>
+        <div class="opp-card" style="border-left: 3px solid var(--accent);">
+          <div class="opp-card-header">
+            <span class="opp-title">Nifty PE at 19.07 — Approaching Value Zone</span>
+            <span class="badge opportunity">Monitor</span>
+          </div>
+          <div class="opp-detail">14% below 5Y median (22.12). If PE drops below 18, trigger a burst deployment of accumulated India reserve into Nifty index funds.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">📡 Upcoming Opportunities</div>
+      <div class="opp-list">
+        <div class="opp-card">
+          <div class="opp-card-header">
+            <span class="opp-title">US Market Consolidation</span>
+            <span class="badge opportunity">Watch</span>
+          </div>
+          <div class="opp-detail">Build cash reserve ($30/mo). Deploy entire reserve when S&P 500 pulls back ≥ 10% from 52-week high. Historical average recovery: 4–6 months.</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-card-header">
+            <span class="opp-title">Start Nifty 50 Index SIP</span>
+            <span class="badge opportunity">Recommended</span>
+          </div>
+          <div class="opp-detail">Allocate ₹7,500/mo to a low-cost Nifty 50 index fund (UTI Nifty 50 or Nippon Nifty 50, Direct). Core allocation currently missing from India portfolio.</div>
+        </div>
+        <div class="opp-card">
+          <div class="opp-card-header">
+            <span class="opp-title">Nifty Next 50 — Moderately Undervalued</span>
+            <span class="badge opportunity">Research</span>
+          </div>
+          <div class="opp-detail">PE at 18.88, 18% below 5Y median. Consider adding after Nifty 50 index core is established. Good mid-cap exposure at current valuations.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB: STRATEGY                              -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-strategy">
+  <div class="main-grid">
+    <div class="card">
+      <div class="section-title">Investment Framework</div>
+      <div class="strategy-block">
+        <div class="strategy-header">
+          <div class="strategy-flag" style="background:var(--series-1)"></div>
+          <div>
+            <strong style="font-size:14px;">80 / 20 Rule</strong>
+            <div style="font-size:12px;color:var(--fg-secondary)">80% systematic SIP · 20% tactical reserve</div>
+          </div>
+        </div>
+      </div>
+      <div class="strategy-block">
+        <div class="strategy-header">
+          <div class="strategy-flag" style="background:var(--gain)"></div>
+          <div>
+            <strong style="font-size:14px;">Time Horizon</strong>
+            <div style="font-size:12px;color:var(--fg-secondary)">Long-term wealth building + short-term tactical bursts on corrections</div>
+          </div>
+        </div>
+      </div>
+      <div class="strategy-block">
+        <div class="strategy-header">
+          <div class="strategy-flag" style="background:var(--series-2)"></div>
+          <div>
+            <strong style="font-size:14px;">Correction Thresholds</strong>
+            <div style="font-size:12px;color:var(--fg-secondary)">India: Nifty PE &lt; 18 · US: S&P 500 drawdown ≥ 10%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">Portfolio Health Checklist</div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--loss);font-size:16px;">✗</span>
+          <span>No core Nifty 50 index fund in India portfolio</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--loss);font-size:16px;">✗</span>
+          <span>SBI Contra on Regular plan (should be Direct)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--loss);font-size:16px;">✗</span>
+          <span>US portfolio over-diversified for $100/mo budget</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--warn);font-size:16px;">△</span>
+          <span>ELSS fund not tax-efficient for H-1B filing</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--gain);font-size:16px;">✓</span>
+          <span>Axis Small Cap performing well (13.75% XIRR)</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--gain);font-size:16px;">✓</span>
+          <span>Monthly investment discipline established</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="color:var(--gain);font-size:16px;">✓</span>
+          <span>Dual-market diversification (India + US)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="section-title">Monitoring Schedule</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
+      <div class="strategy-block">
+        <strong>Weekly Intelligence Brief</strong>
+        <div style="font-size:12px;color:var(--fg-secondary);margin-top:4px;">Monday 8 AM ET — Nifty PE check, S&P 500 drawdown, macro triggers, watchlist movers</div>
+      </div>
+      <div class="strategy-block">
+        <strong>Quarterly Strategy Review</strong>
+        <div style="font-size:12px;color:var(--fg-secondary);margin-top:4px;">SIP performance evaluation, rebalancing signals, tax-loss harvesting (US), expense ratio audit</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<div class="footer">
+  Investment Command Center · Data manually synced from Groww &amp; Webull<br>
+  This dashboard is for informational and educational purposes only — not personalized financial advice.<br>
+  Update data via Claude chat with portfolio screenshots or CSV exports.
+</div>
+
+<script>
+// ── Tab navigation ──
+const tabs = document.querySelectorAll('.nav-tab');
+const panels = document.querySelectorAll('.tab-panel');
+
+function switchTab(tabName) {
+  tabs.forEach(t => { t.classList.toggle('active', t.dataset.tab === tabName); t.setAttribute('aria-selected', t.dataset.tab === tabName); });
+  panels.forEach(p => { p.classList.toggle('active', p.id === 'panel-' + tabName); });
+  try { localStorage.setItem('icc-tab', tabName); } catch(e) {}
+}
+
+tabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+
+// Restore last tab
+try {
+  const saved = localStorage.getItem('icc-tab');
+  if (saved && document.getElementById('panel-' + saved)) switchTab(saved);
+} catch(e) {}
+
+// ── Theme toggle ──
+const toggle = document.getElementById('themeToggle');
+function applyTheme(theme) {
+  if (theme === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    toggle.textContent = '☀️';
+  } else if (theme === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+    toggle.textContent = '🌙';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    toggle.textContent = '🌓';
+  }
+  try { localStorage.setItem('icc-theme', theme); } catch(e) {}
+}
+
+toggle.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  if (!current) applyTheme('dark');
+  else if (current === 'dark') applyTheme('light');
+  else applyTheme('system');
+});
+
+try {
+  const savedTheme = localStorage.getItem('icc-theme');
+  if (savedTheme) applyTheme(savedTheme);
+} catch(e) {}
+</script>
+
+</body>
+</html>
