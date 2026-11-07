@@ -6,7 +6,6 @@
 <title>Investment Command Center</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
 <style>
-/* ── Layout: financial command center — dense data grid, breathing gutters ── */
 :root {
   --bg: #f7f7f5;
   --bg-card: #ffffff;
@@ -36,397 +35,193 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #111110;
-    --bg-card: #1c1c1a;
-    --bg-card-alt: #222220;
-    --fg: #edece8;
-    --fg-secondary: #b5b4ab;
-    --fg-muted: #7a796f;
-    --border: #2e2e2b;
-    --border-light: #252523;
-    --accent: #3987e5;
-    --accent-light: #1e2d42;
-    --gain: #1db96a;
-    --gain-bg: #112a1c;
-    --loss: #e66767;
-    --loss-bg: #2e1515;
-    --warn: #eda100;
-    --warn-bg: #2e2510;
-    --series-1: #3987e5;
-    --series-2: #d95926;
-    --series-3: #199e70;
-    --series-4: #c98500;
-    --series-5: #d55181;
-    --india-accent: #199e70;
-    --us-accent: #3987e5;
+    --bg: #111110; --bg-card: #1c1c1a; --bg-card-alt: #222220;
+    --fg: #edece8; --fg-secondary: #b5b4ab; --fg-muted: #7a796f;
+    --border: #2e2e2b; --border-light: #252523;
+    --accent: #3987e5; --accent-light: #1e2d42;
+    --gain: #1db96a; --gain-bg: #112a1c;
+    --loss: #e66767; --loss-bg: #2e1515;
+    --warn: #eda100; --warn-bg: #2e2510;
+    --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70;
+    --series-4: #c98500; --series-5: #d55181;
+    --india-accent: #199e70; --us-accent: #3987e5;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #111110;
-  --bg-card: #1c1c1a;
-  --bg-card-alt: #222220;
-  --fg: #edece8;
-  --fg-secondary: #b5b4ab;
-  --fg-muted: #7a796f;
-  --border: #2e2e2b;
-  --border-light: #252523;
-  --accent: #3987e5;
-  --accent-light: #1e2d42;
-  --gain: #1db96a;
-  --gain-bg: #112a1c;
-  --loss: #e66767;
-  --loss-bg: #2e1515;
-  --warn: #eda100;
-  --warn-bg: #2e2510;
-  --series-1: #3987e5;
-  --series-2: #d95926;
-  --series-3: #199e70;
-  --series-4: #c98500;
-  --series-5: #d55181;
-  --india-accent: #199e70;
-  --us-accent: #3987e5;
+  --bg: #111110; --bg-card: #1c1c1a; --bg-card-alt: #222220;
+  --fg: #edece8; --fg-secondary: #b5b4ab; --fg-muted: #7a796f;
+  --border: #2e2e2b; --border-light: #252523;
+  --accent: #3987e5; --accent-light: #1e2d42;
+  --gain: #1db96a; --gain-bg: #112a1c;
+  --loss: #e66767; --loss-bg: #2e1515;
+  --warn: #eda100; --warn-bg: #2e2510;
+  --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70;
+  --series-4: #c98500; --series-5: #d55181;
+  --india-accent: #199e70; --us-accent: #3987e5;
   color-scheme: dark;
 }
 
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--bg); color: var(--fg);
   font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
-  margin: 0;
-  padding: 16px;
-  padding-block: 0;
-  line-height: 1.5;
+  margin: 0; padding: 16px; padding-block: 0; line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 1200px; margin-left: auto; margin-right: auto;
 }
-
 * { box-sizing: border-box; margin: 0; }
-
-/* ── Typography ── */
 .mono { font-family: 'Space Mono', monospace; }
 h1, h2, h3 { text-wrap: balance; }
-.section-title {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-  margin-bottom: 12px;
-}
 
-/* ── Header ── */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 20px 0 16px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 20px;
-}
+.section-title { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 12px; }
+.header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 20px; }
 .header-left { display: flex; align-items: center; gap: 12px; }
-.logo {
-  width: 36px; height: 36px;
-  background: var(--accent);
-  border-radius: 8px;
-  display: grid; place-items: center;
-  color: #fff; font-weight: 700; font-size: 16px;
-}
+.logo { width: 36px; height: 36px; background: var(--accent); border-radius: 8px; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 16px; }
 .header h1 { font-size: 20px; font-weight: 700; }
 .header-subtitle { font-size: 12px; color: var(--fg-muted); }
+.header-right { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .last-updated { font-size: 11px; color: var(--fg-muted); }
 
-/* ── Theme toggle ── */
-.theme-toggle {
-  background: var(--bg-card-alt);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  padding: 6px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  color: var(--fg-muted);
-  line-height: 1;
+.hdr-btn {
+  background: var(--bg-card-alt); border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 12px; cursor: pointer; font-size: 12px; font-weight: 500;
+  color: var(--fg-muted); line-height: 1; font-family: inherit; transition: all 0.15s;
 }
-.theme-toggle:hover { color: var(--fg); }
+.hdr-btn:hover { color: var(--fg); border-color: var(--fg-muted); }
+.hdr-btn.active-edit { background: var(--accent); color: #fff; border-color: var(--accent); }
+.hdr-btn.save-btn { background: var(--gain); color: #fff; border-color: var(--gain); }
 
-/* ── Nav tabs ── */
-.nav-tabs {
-  display: flex;
-  gap: 2px;
-  background: var(--bg-card-alt);
-  border-radius: var(--radius);
-  padding: 3px;
-  margin-bottom: 20px;
-  overflow-x: auto;
-}
-.nav-tab {
-  padding: 8px 16px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--fg-muted);
-  border: none;
-  background: none;
-  border-radius: 7px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.15s;
-  font-family: inherit;
-}
+/* Nav */
+.nav-tabs { display: flex; gap: 2px; background: var(--bg-card-alt); border-radius: var(--radius); padding: 3px; margin-bottom: 20px; overflow-x: auto; }
+.nav-tab { padding: 8px 16px; font-size: 13px; font-weight: 500; color: var(--fg-muted); border: none; background: none; border-radius: 7px; cursor: pointer; white-space: nowrap; transition: all 0.15s; font-family: inherit; }
 .nav-tab:hover { color: var(--fg); }
-.nav-tab.active {
-  background: var(--bg-card);
-  color: var(--fg);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-}
+.nav-tab.active { background: var(--bg-card); color: var(--fg); box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
 
-/* ── Cards ── */
-.card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-}
-
-/* ── Stat tiles ── */
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 12px;
-  margin-bottom: 20px;
-}
-.stat-tile {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-}
-.stat-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-  margin-bottom: 6px;
-}
-.stat-value {
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-.stat-delta {
-  font-size: 12px;
-  font-weight: 600;
-  margin-top: 4px;
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  padding: 2px 7px;
-  border-radius: 4px;
-}
+/* Cards & tiles */
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; }
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.stat-tile { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+.stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 6px; }
+.stat-value { font-size: 24px; font-weight: 700; line-height: 1.2; }
+.stat-delta { font-size: 12px; font-weight: 600; margin-top: 4px; display: inline-flex; align-items: center; gap: 3px; padding: 2px 7px; border-radius: 4px; }
 .stat-delta.up { color: var(--gain); background: var(--gain-bg); }
 .stat-delta.down { color: var(--loss); background: var(--loss-bg); }
 
-/* ── Main grid ── */
-.main-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
-}
-@media (max-width: 800px) {
-  .main-grid { grid-template-columns: 1fr; }
-}
+.main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+@media (max-width: 800px) { .main-grid { grid-template-columns: 1fr; } }
 
-/* ── Tables ── */
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-.data-table th {
-  text-align: left;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--fg-muted);
-  padding: 8px 10px;
-  border-bottom: 1px solid var(--border);
-}
-.data-table td {
-  padding: 10px;
-  border-bottom: 1px solid var(--border-light);
-  vertical-align: middle;
-}
+/* Tables */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.data-table th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--fg-muted); padding: 8px 10px; border-bottom: 1px solid var(--border); }
+.data-table td { padding: 10px; border-bottom: 1px solid var(--border-light); vertical-align: middle; }
 .data-table tr:last-child td { border-bottom: none; }
 .data-table tr:hover td { background: var(--bg-card-alt); }
 .data-table .num { font-variant-numeric: tabular-nums; text-align: right; font-family: 'Space Mono', monospace; font-size: 12px; }
 
-/* ── Market chips ── */
-.market-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 4px;
-  letter-spacing: 0.03em;
-}
+/* Chips & badges */
+.market-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; letter-spacing: 0.03em; }
 .market-chip.india { background: rgba(27,175,122,0.12); color: var(--india-accent); }
 .market-chip.us { background: rgba(42,120,214,0.12); color: var(--us-accent); }
-
-/* ── Badge ── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 4px;
-}
+.badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
 .badge.active { background: var(--gain-bg); color: var(--gain); }
-.badge.paused { background: var(--warn-bg); color: var(--warn); }
-.badge.opportunity { background: var(--accent-light); color: var(--accent); }
+.badge.paused, .badge.review { background: var(--warn-bg); color: var(--warn); }
+.badge.opportunity, .badge.proposed { background: var(--accent-light); color: var(--accent); }
 .badge.urgent { background: var(--loss-bg); color: var(--loss); }
 
-/* ── Opportunity cards ── */
+/* Opportunity cards */
 .opp-list { display: flex; flex-direction: column; gap: 10px; }
-.opp-card {
-  padding: 14px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  background: var(--bg-card-alt);
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.opp-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
+.opp-card { padding: 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--bg-card-alt); display: flex; flex-direction: column; gap: 6px; }
+.opp-card-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .opp-title { font-size: 13px; font-weight: 600; }
 .opp-detail { font-size: 12px; color: var(--fg-secondary); line-height: 1.4; }
 
-/* ── Strategy panel ── */
-.strategy-block {
-  padding: 14px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  background: var(--bg-card-alt);
-}
+/* Strategy */
+.strategy-block { padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--bg-card-alt); }
 .strategy-block + .strategy-block { margin-top: 10px; }
 .strategy-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-.strategy-flag {
-  width: 4px; height: 28px;
-  border-radius: 2px;
-}
-.alloc-bar {
-  display: flex;
-  height: 8px;
-  border-radius: 4px;
-  overflow: hidden;
-  gap: 2px;
-  margin-top: 8px;
-}
+.strategy-flag { width: 4px; height: 28px; border-radius: 2px; }
+.alloc-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; gap: 2px; margin-top: 8px; }
 .alloc-seg { border-radius: 3px; }
 .alloc-legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; font-size: 11px; color: var(--fg-secondary); }
 .alloc-legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; vertical-align: middle; }
 
-/* ── Burst log ── */
-.burst-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-light);
-  font-size: 13px;
-}
-.burst-row:last-child { border-bottom: none; }
+/* Threshold meter */
+.threshold-meter { position: relative; height: 6px; background: var(--border-light); border-radius: 3px; margin-top: 8px; }
+.threshold-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+.threshold-mark { position: absolute; top: -3px; width: 2px; height: 12px; border-radius: 1px; background: var(--fg-muted); }
 
-/* ── Thresholds ── */
-.threshold-meter {
-  position: relative;
-  height: 6px;
-  background: var(--border-light);
-  border-radius: 3px;
-  margin-top: 8px;
-}
-.threshold-fill {
-  height: 100%;
-  border-radius: 3px;
-  transition: width 0.3s;
-}
-.threshold-mark {
-  position: absolute;
-  top: -3px;
-  width: 2px;
-  height: 12px;
-  border-radius: 1px;
-  background: var(--fg-muted);
-}
-
-/* ── Chart containers ── */
-.chart-area {
-  width: 100%;
-  overflow-x: auto;
-}
-.chart-area svg {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* ── Sections ── */
-.section { margin-bottom: 20px; }
-.section-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-/* ── Footer ── */
-.footer {
-  padding: 16px 0;
-  border-top: 1px solid var(--border);
-  margin-top: 20px;
-  font-size: 11px;
-  color: var(--fg-muted);
-  text-align: center;
-  line-height: 1.6;
-}
-
-/* ── Tab panels ── */
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.footer { padding: 16px 0; border-top: 1px solid var(--border); margin-top: 20px; font-size: 11px; color: var(--fg-muted); text-align: center; line-height: 1.6; }
 .tab-panel { display: none; }
 .tab-panel.active { display: block; }
+.table-wrap { overflow-x: auto; min-width: 0; }
 
-/* ── Responsive ── */
+/* Editable fields */
+.editable { position: relative; }
+.edit-mode .editable { cursor: pointer; border-bottom: 1px dashed var(--accent); }
+.editable input {
+  background: var(--bg-card-alt); border: 1px solid var(--accent); border-radius: 4px;
+  padding: 2px 6px; font-family: 'Space Mono', monospace; font-size: inherit;
+  color: var(--fg); width: 100px; outline: none;
+}
+
+/* Settings overlay */
+.settings-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100;
+  display: flex; align-items: center; justify-content: center; padding: 16px;
+}
+.settings-panel {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 24px; max-width: 480px; width: 100%;
+}
+.settings-panel h2 { font-size: 16px; margin-bottom: 16px; }
+.settings-panel label { display: block; font-size: 12px; font-weight: 600; color: var(--fg-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+.settings-panel input[type="password"], .settings-panel input[type="text"] {
+  width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--bg-card-alt); color: var(--fg); font-family: 'Space Mono', monospace;
+  font-size: 13px; margin-bottom: 12px;
+}
+.settings-panel .hint { font-size: 11px; color: var(--fg-muted); margin-bottom: 16px; line-height: 1.5; }
+.settings-panel .btn-row { display: flex; gap: 8px; justify-content: flex-end; }
+.settings-panel button { padding: 8px 16px; border-radius: 6px; border: 1px solid var(--border); background: var(--bg-card-alt); color: var(--fg); cursor: pointer; font-family: inherit; font-size: 13px; }
+.settings-panel button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Status toast */
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: var(--fg); color: var(--bg); padding: 10px 20px; border-radius: 8px;
+  font-size: 13px; font-weight: 500; z-index: 200; opacity: 0; transition: opacity 0.3s;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; }
+
+/* Burst form */
+.burst-form { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 8px; align-items: end; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.burst-form label { font-size: 11px; color: var(--fg-muted); display: block; margin-bottom: 3px; }
+.burst-form input, .burst-form select {
+  width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 4px;
+  background: var(--bg-card-alt); color: var(--fg); font-family: inherit; font-size: 13px;
+}
+.burst-form button { padding: 6px 14px; }
+
+/* Connection dot */
+.conn-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+.conn-dot.ok { background: var(--gain); }
+.conn-dot.no { background: var(--loss); }
+
 @media (max-width: 500px) {
   .stat-grid { grid-template-columns: 1fr 1fr; }
   .stat-value { font-size: 20px; }
   .header h1 { font-size: 17px; }
   body { padding: 12px; }
+  .burst-form { grid-template-columns: 1fr 1fr; }
 }
 
-/* ── Scrollable table ── */
-.table-wrap { overflow-x: auto; min-width: 0; }
-
-/* ── Sparkline ── */
-.sparkline { display: inline-block; vertical-align: middle; }
+[hidden] { display: none !important; }
 </style>
 </head>
 <body>
 
-<!-- ═══════════ HEADER ═══════════ -->
 <div class="header">
   <div class="header-left">
     <div class="logo">IC</div>
@@ -435,373 +230,334 @@ h1, h2, h3 { text-wrap: balance; }
       <div class="header-subtitle">India + US · Dual-Market Portfolio Intelligence</div>
     </div>
   </div>
-  <div style="display:flex;align-items:center;gap:10px;">
-    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌓</button>
-    <div class="last-updated" id="lastUpdated">Last sync: Nov 7, 2026</div>
+  <div class="header-right">
+    <button class="hdr-btn" id="btnEdit" title="Edit portfolio data">✏️ Edit</button>
+    <button class="hdr-btn save-btn" id="btnSave" hidden title="Save changes">💾 Save</button>
+    <button class="hdr-btn" id="btnCancel" hidden title="Discard changes">Cancel</button>
+    <button class="hdr-btn" id="btnSettings" title="GitHub connection">⚙️</button>
+    <button class="hdr-btn" id="btnTheme" title="Toggle theme">🌓</button>
+    <div class="last-updated" id="lastUpdated"></div>
   </div>
 </div>
 
-<!-- ═══════════ NAV ═══════════ -->
-<nav class="nav-tabs" role="tablist">
-  <button class="nav-tab active" role="tab" data-tab="overview" aria-selected="true">Overview</button>
-  <button class="nav-tab" role="tab" data-tab="india">India Portfolio</button>
-  <button class="nav-tab" role="tab" data-tab="us">US Portfolio</button>
-  <button class="nav-tab" role="tab" data-tab="sip">SIP Tracker</button>
-  <button class="nav-tab" role="tab" data-tab="burst">Burst Log</button>
-  <button class="nav-tab" role="tab" data-tab="opportunities">Opportunities</button>
-  <button class="nav-tab" role="tab" data-tab="strategy">Strategy</button>
-</nav>
+<nav class="nav-tabs" role="tablist" id="navTabs"></nav>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- TAB: OVERVIEW                              -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="tab-panel active" id="panel-overview">
+<div id="app"></div>
 
-  <!-- Stat tiles -->
+<div class="footer">
+  Investment Command Center · Data synced from Groww &amp; Webull<br>
+  This dashboard is for informational and educational purposes only — not personalized financial advice.
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── State ───
+let DATA = null;
+let editMode = false;
+let pendingChanges = {};
+const REPO_OWNER = 'raydrift';
+const REPO_NAME = 'fincommand';
+const DATA_PATH = 'data.json';
+const BRANCH = 'gh-pages';
+
+// ─── GitHub PAT ───
+function getPAT() { try { return sessionStorage.getItem('icc-pat') || ''; } catch(e) { return ''; } }
+function setPAT(v) { try { sessionStorage.setItem('icc-pat', v); } catch(e) {} }
+function hasPAT() { return getPAT().length > 5; }
+
+// ─── Toast ───
+function toast(msg, ms=2500) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), ms);
+}
+
+// ─── Tabs ───
+const TABS = [
+  { id: 'overview', label: 'Overview' },
+  { id: 'india', label: 'India Portfolio' },
+  { id: 'us', label: 'US Portfolio' },
+  { id: 'sip', label: 'SIP Tracker' },
+  { id: 'burst', label: 'Burst Log' },
+  { id: 'opportunities', label: 'Opportunities' },
+  { id: 'strategy', label: 'Strategy' }
+];
+let activeTab = 'overview';
+try { const s = localStorage.getItem('icc-tab'); if (s && TABS.find(t => t.id === s)) activeTab = s; } catch(e) {}
+
+function renderTabs() {
+  const nav = document.getElementById('navTabs');
+  nav.innerHTML = TABS.map(t =>
+    `<button class="nav-tab${t.id === activeTab ? ' active' : ''}" role="tab" data-tab="${t.id}">${t.label}</button>`
+  ).join('');
+  nav.querySelectorAll('.nav-tab').forEach(b => b.addEventListener('click', () => {
+    activeTab = b.dataset.tab;
+    try { localStorage.setItem('icc-tab', activeTab); } catch(e) {}
+    renderTabs(); render();
+  }));
+}
+
+// ─── Helpers ───
+function fmt(n, currency) {
+  if (n == null) return '—';
+  if (currency === 'INR') return '₹' + n.toLocaleString('en-IN');
+  if (currency === 'USD') return '$' + n.toLocaleString('en-US');
+  return n.toLocaleString();
+}
+function pct(n) { return n == null ? '—' : (n >= 0 ? '+' : '') + n.toFixed(2) + '%'; }
+function absDelta(inv, cur) { return cur - inv; }
+function pctReturn(inv, cur) { return inv > 0 ? ((cur - inv) / inv * 100) : 0; }
+function totalInvested(holdings) { return holdings.reduce((s, h) => s + (h.invested || 0), 0); }
+function totalCurrent(holdings) { return holdings.reduce((s, h) => s + (h.current || 0), 0); }
+
+function editableNum(path, value, currency) {
+  if (!editMode) return `<span>${fmt(value, currency)}</span>`;
+  return `<span class="editable"><input type="number" data-path="${path}" value="${value || ''}" step="any" style="width:90px"></span>`;
+}
+
+function badgeClass(status) {
+  const map = { active: 'active', review: 'review', proposed: 'proposed', paused: 'paused', urgent: 'urgent' };
+  return map[status] || 'paused';
+}
+
+function flagBadge(flags) {
+  if (!flags || !flags.length) return '';
+  const f = flags[0];
+  const cls = f.includes('Switch') || f.includes('Urgent') ? 'urgent' : f.includes('Top') ? 'active' : 'paused';
+  return `<span class="badge ${cls}">${f}</span>`;
+}
+
+// ─── Nifty PE meter ───
+function peMeter(pe, threshold, median) {
+  const min = 12, max = 30;
+  const fillPct = Math.min(100, Math.max(0, (pe - min) / (max - min) * 100));
+  const threshPct = (threshold - min) / (max - min) * 100;
+  const belowMedian = median > 0 ? Math.round((1 - pe / median) * 100) : 0;
+  const color = pe < threshold ? 'var(--gain)' : pe < median ? 'var(--accent)' : 'var(--warn)';
+  return `
+    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
+      <span style="font-size:28px;font-weight:700;" class="mono">${editMode
+        ? `<span class="editable"><input type="number" data-path="market.niftyPE.current" value="${pe}" step="0.01" style="width:80px"></span>`
+        : pe}</span>
+      <span style="font-size:12px;color:var(--fg-muted)">5Y Median: ${median}</span>
+    </div>
+    <div class="threshold-meter">
+      <div class="threshold-fill" style="width:${fillPct}%;background:${color}"></div>
+      <div class="threshold-mark" style="left:${threshPct}%;background:var(--loss)" title="Deploy threshold: PE < ${threshold}"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--fg-muted);margin-top:6px;">
+      <span>${min} (cheap)</span>
+      <span style="color:var(--loss)">▼ Deploy < ${threshold}</span>
+      <span>${max} (expensive)</span>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:var(--fg-secondary);">
+      Current PE is ${belowMedian}% below 5Y median — ${pe < threshold ? 'below deploy threshold, consider burst deployment' : pe < median ? 'market is reasonably valued' : 'above median, exercise caution'}.
+    </div>`;
+}
+
+// ─── Tab renderers ───
+function renderOverview() {
+  const d = DATA;
+  const indInv = totalInvested(d.india.holdings);
+  const indCur = totalCurrent(d.india.holdings);
+  const delta = indCur - indInv;
+  // Find best XIRR
+  const bestXirr = Math.max(...d.india.holdings.map(h => h.xirr || 0));
+  return `
   <div class="stat-grid">
     <div class="stat-tile">
-      <div class="stat-label">Total Invested</div>
-      <div class="stat-value">₹22,818</div>
-      <div class="stat-delta up">+ ~$100 US</div>
+      <div class="stat-label">Total Invested (India)</div>
+      <div class="stat-value">${fmt(indInv, 'INR')}</div>
+      <div class="stat-delta up">+ ~$${d.budget.us.monthly} US</div>
     </div>
     <div class="stat-tile">
       <div class="stat-label">Current Value</div>
-      <div class="stat-value">₹24,453</div>
-      <div class="stat-delta up">▲ ₹1,635</div>
+      <div class="stat-value">${fmt(indCur, 'INR')}</div>
+      <div class="stat-delta ${delta >= 0 ? 'up' : 'down'}">▲ ${fmt(delta, 'INR')}</div>
     </div>
     <div class="stat-tile">
-      <div class="stat-label">Portfolio XIRR</div>
-      <div class="stat-value mono" style="color:var(--gain)">9.48%</div>
+      <div class="stat-label">Best XIRR</div>
+      <div class="stat-value mono" style="color:var(--gain)">${bestXirr.toFixed(2)}%</div>
     </div>
     <div class="stat-tile">
       <div class="stat-label">Monthly Budget</div>
-      <div class="stat-value">₹15K <span style="font-size:14px;color:var(--fg-muted)">+ $100</span></div>
+      <div class="stat-value">${fmt(d.budget.india.monthly/1000)}K <span style="font-size:14px;color:var(--fg-muted)">+ $${d.budget.us.monthly}</span></div>
     </div>
   </div>
-
-  <!-- Portfolio split chart + Allocation -->
   <div class="main-grid">
-    <!-- India holdings -->
     <div class="card">
       <div class="section-header">
         <div class="section-title" style="margin:0"><span class="market-chip india">🇮🇳 India</span> Holdings</div>
-        <span style="font-size:12px;color:var(--fg-muted)">₹24,453 current</span>
+        <span style="font-size:12px;color:var(--fg-muted)">${fmt(indCur, 'INR')} current</span>
       </div>
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr><th>Fund</th><th class="num">Invested</th><th class="num">Current</th><th class="num">Return</th><th class="num">XIRR</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>ABSL ELSS Tax Saver</strong><br><span style="font-size:11px;color:var(--fg-muted)">Direct · Growth</span></td>
-              <td class="num">₹13,832</td>
-              <td class="num">₹15,180</td>
-              <td class="num" style="color:var(--gain)">+9.74%</td>
-              <td class="num">7.68%</td>
-            </tr>
-            <tr>
-              <td><strong>SBI Contra Fund</strong><br><span style="font-size:11px;color:var(--loss)">⚠ Regular · External</span></td>
-              <td class="num">₹5,000</td>
-              <td class="num">₹5,003</td>
-              <td class="num" style="color:var(--fg-muted)">+0.05%</td>
-              <td class="num" style="color:var(--loss)">1.90%</td>
-            </tr>
-            <tr>
-              <td><strong>Axis Small Cap</strong><br><span style="font-size:11px;color:var(--fg-muted)">Direct · Growth</span></td>
-              <td class="num">₹3,986</td>
-              <td class="num">₹4,271</td>
-              <td class="num" style="color:var(--gain)">+7.14%</td>
-              <td class="num" style="color:var(--gain)">13.75%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Fund</th><th class="num">Invested</th><th class="num">Current</th><th class="num">Return</th><th class="num">XIRR</th></tr></thead>
+        <tbody>${d.india.holdings.map((h, i) => {
+          const ret = pctReturn(h.invested, h.current);
+          const retColor = ret > 1 ? 'var(--gain)' : ret < -1 ? 'var(--loss)' : 'var(--fg-muted)';
+          const planWarn = h.plan === 'Regular' ? `<br><span style="font-size:11px;color:var(--loss)">⚠ ${h.plan} · ${h.type}</span>` : `<br><span style="font-size:11px;color:var(--fg-muted)">${h.plan} · ${h.type}</span>`;
+          return `<tr>
+            <td><strong>${h.name}</strong>${planWarn}</td>
+            <td class="num">${editableNum('india.holdings.'+i+'.invested', h.invested, 'INR')}</td>
+            <td class="num">${editableNum('india.holdings.'+i+'.current', h.current, 'INR')}</td>
+            <td class="num" style="color:${retColor}">${pct(ret)}</td>
+            <td class="num">${editableNum('india.holdings.'+i+'.xirr', h.xirr)}</td>
+          </tr>`;
+        }).join('')}</tbody>
+      </table></div>
     </div>
-
-    <!-- US holdings -->
     <div class="card">
       <div class="section-header">
         <div class="section-title" style="margin:0"><span class="market-chip us">🇺🇸 US</span> Holdings</div>
-        <span style="font-size:12px;color:var(--fg-muted)">$100/mo via Webull</span>
+        <span style="font-size:12px;color:var(--fg-muted)">$${d.budget.us.monthly}/mo via Webull</span>
       </div>
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead>
-            <tr><th>Ticker</th><th>Name</th><th>Category</th></tr>
-          </thead>
-          <tbody>
-            <tr><td class="mono"><strong>SPY</strong></td><td>SPDR S&P 500 ETF</td><td><span class="badge active">Core</span></td></tr>
-            <tr><td class="mono"><strong>NVDA</strong></td><td>Nvidia</td><td><span class="badge opportunity">Growth</span></td></tr>
-            <tr><td class="mono"><strong>AAPL</strong></td><td>Apple</td><td><span class="badge opportunity">Growth</span></td></tr>
-            <tr><td class="mono"><strong>GOOGL</strong></td><td>Alphabet</td><td><span class="badge opportunity">Growth</span></td></tr>
-            <tr><td class="mono"><strong>AVGO</strong></td><td>Broadcom</td><td><span class="badge opportunity">Growth</span></td></tr>
-            <tr><td class="mono"><strong>TSLA</strong></td><td>Tesla</td><td><span class="badge opportunity">Growth</span></td></tr>
-            <tr><td class="mono"><strong>ORCL</strong></td><td>Oracle</td><td><span class="badge opportunity">Growth</span></td></tr>
-            <tr><td class="mono"><strong>GLD</strong></td><td>SPDR Gold</td><td><span class="badge paused">Hedge</span></td></tr>
-            <tr><td class="mono"><strong>JNK</strong></td><td>High Yield Bond</td><td><span class="badge paused">Income</span></td></tr>
-            <tr><td class="mono"><strong>BIL</strong></td><td>1-3 Month T-Bill</td><td><span class="badge paused">Cash</span></td></tr>
-            <tr><td class="mono"><strong>SHY</strong></td><td>1-3 Year Treasury</td><td><span class="badge paused">Income</span></td></tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Ticker</th><th>Name</th><th>Category</th></tr></thead>
+        <tbody>${d.us.holdings.map(h => {
+          const catBadge = h.category === 'core' ? 'active' : h.category === 'growth' ? 'opportunity' : 'paused';
+          return `<tr><td class="mono"><strong>${h.ticker}</strong></td><td>${h.name}</td><td><span class="badge ${catBadge}">${h.category.charAt(0).toUpperCase()+h.category.slice(1)}</span></td></tr>`;
+        }).join('')}</tbody>
+      </table></div>
     </div>
   </div>
-
-  <!-- Action items -->
+  ${d.actions.filter(a => !a.resolved).length ? `
   <div class="card" style="border-left: 3px solid var(--warn); margin-bottom: 20px;">
     <div class="section-title">⚡ Action Items</div>
     <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
-      <div style="display:flex;align-items:start;gap:8px;">
-        <span class="badge urgent">Urgent</span>
-        <span><strong>Switch SBI Contra from Regular to Direct plan</strong> — saving ~0.8–1.5% in expense ratio annually. Current XIRR of 1.90% is largely eaten by fees.</span>
-      </div>
-      <div style="display:flex;align-items:start;gap:8px;">
-        <span class="badge paused">Review</span>
-        <span><strong>ABSL ELSS Tax Saver</strong> — ELSS 80C deduction doesn't apply to US tax returns (H-1B). Evaluate whether the 3-year lock-in is justified purely on fund performance.</span>
-      </div>
-      <div style="display:flex;align-items:start;gap:8px;">
-        <span class="badge paused">Review</span>
-        <span><strong>US portfolio: 11 positions on $100/mo</strong> — over-diversified. Consider consolidating to 3–4 core positions (SPY + 2–3 conviction picks).</span>
-      </div>
+      ${d.actions.filter(a => !a.resolved).map(a => `
+        <div style="display:flex;align-items:start;gap:8px;">
+          <span class="badge ${a.severity === 'urgent' ? 'urgent' : 'paused'}">${a.severity === 'urgent' ? 'Urgent' : 'Review'}</span>
+          <span><strong>${a.title}</strong> — ${a.detail}</span>
+        </div>`).join('')}
     </div>
-  </div>
-</div>
+  </div>` : ''}`;
+}
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- TAB: INDIA PORTFOLIO                       -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-india">
+function renderIndia() {
+  const d = DATA;
+  const inv = totalInvested(d.india.holdings);
+  const cur = totalCurrent(d.india.holdings);
+  const ret = pctReturn(inv, cur);
+  const pe = d.market.niftyPE;
+  // Allocation percentages
+  const allocs = d.india.holdings.map(h => ({ name: h.name.split(' ')[0] + (h.name.split(' ')[1] ? ' ' + h.name.split(' ')[1] : ''), pct: cur > 0 ? (h.current / cur * 100) : 0 }));
+  const colors = ['var(--series-1)', 'var(--series-2)', 'var(--series-3)', 'var(--series-4)', 'var(--series-5)'];
+  return `
   <div class="stat-grid">
-    <div class="stat-tile">
-      <div class="stat-label">India Invested</div>
-      <div class="stat-value">₹22,818</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-label">India Current</div>
-      <div class="stat-value" style="color:var(--gain)">₹24,453</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-label">Overall Return</div>
-      <div class="stat-value mono" style="color:var(--gain)">+7.17%</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-label">India XIRR</div>
-      <div class="stat-value mono">9.48%</div>
-    </div>
+    <div class="stat-tile"><div class="stat-label">India Invested</div><div class="stat-value">${fmt(inv,'INR')}</div></div>
+    <div class="stat-tile"><div class="stat-label">India Current</div><div class="stat-value" style="color:var(--gain)">${fmt(cur,'INR')}</div></div>
+    <div class="stat-tile"><div class="stat-label">Overall Return</div><div class="stat-value mono" style="color:${ret>=0?'var(--gain)':'var(--loss)'}">${pct(ret)}</div></div>
+    <div class="stat-tile"><div class="stat-label">Holdings</div><div class="stat-value">${d.india.holdings.length}</div></div>
   </div>
-
-  <!-- Allocation bar -->
   <div class="card" style="margin-bottom:16px;">
     <div class="section-title">Allocation Breakdown</div>
-    <div class="alloc-bar">
-      <div class="alloc-seg" style="flex:62.1;background:var(--series-1)"></div>
-      <div class="alloc-seg" style="flex:20.5;background:var(--series-2)"></div>
-      <div class="alloc-seg" style="flex:17.5;background:var(--series-3)"></div>
-    </div>
-    <div class="alloc-legend">
-      <span><span class="alloc-legend-dot" style="background:var(--series-1)"></span>ABSL ELSS 62%</span>
-      <span><span class="alloc-legend-dot" style="background:var(--series-2)"></span>SBI Contra 20%</span>
-      <span><span class="alloc-legend-dot" style="background:var(--series-3)"></span>Axis Small Cap 17%</span>
-    </div>
+    <div class="alloc-bar">${allocs.map((a,i)=>`<div class="alloc-seg" style="flex:${a.pct};background:${colors[i]}"></div>`).join('')}</div>
+    <div class="alloc-legend">${allocs.map((a,i)=>`<span><span class="alloc-legend-dot" style="background:${colors[i]}"></span>${a.name} ${Math.round(a.pct)}%</span>`).join('')}</div>
   </div>
-
-  <!-- Detailed holdings -->
   <div class="card">
     <div class="section-title">Holdings Detail</div>
-    <div class="table-wrap">
-      <table class="data-table">
-        <thead><tr><th>Fund</th><th>Plan</th><th class="num">Invested</th><th class="num">Current</th><th class="num">Abs Return</th><th class="num">XIRR</th><th>Flag</th></tr></thead>
-        <tbody>
-          <tr>
-            <td><strong>ABSL ELSS Tax Saver</strong></td><td>Direct</td>
-            <td class="num">₹13,832</td><td class="num">₹15,180</td>
-            <td class="num" style="color:var(--gain)">+₹1,348</td>
-            <td class="num">7.68%</td>
-            <td><span class="badge paused">ELSS Lock-in</span></td>
-          </tr>
-          <tr>
-            <td><strong>SBI Contra Fund</strong></td><td style="color:var(--loss)">Regular ⚠</td>
-            <td class="num">₹5,000</td><td class="num">₹5,003</td>
-            <td class="num" style="color:var(--fg-muted)">+₹3</td>
-            <td class="num" style="color:var(--loss)">1.90%</td>
-            <td><span class="badge urgent">Switch to Direct</span></td>
-          </tr>
-          <tr>
-            <td><strong>Axis Small Cap</strong></td><td>Direct</td>
-            <td class="num">₹3,986</td><td class="num">₹4,271</td>
-            <td class="num" style="color:var(--gain)">+₹285</td>
-            <td class="num" style="color:var(--gain)">13.75%</td>
-            <td><span class="badge active">Top Performer</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Fund</th><th>Plan</th><th class="num">Invested</th><th class="num">Current</th><th class="num">Abs Return</th><th class="num">XIRR</th><th>Flag</th></tr></thead>
+      <tbody>${d.india.holdings.map((h,i) => {
+        const delta = absDelta(h.invested, h.current);
+        const planStyle = h.plan === 'Regular' ? 'color:var(--loss)' : '';
+        return `<tr>
+          <td><strong>${h.name}</strong></td>
+          <td style="${planStyle}">${h.plan}${h.plan==='Regular'?' ⚠':''}</td>
+          <td class="num">${editableNum('india.holdings.'+i+'.invested', h.invested, 'INR')}</td>
+          <td class="num">${editableNum('india.holdings.'+i+'.current', h.current, 'INR')}</td>
+          <td class="num" style="color:${delta>=0?'var(--gain)':'var(--loss)'}">₹${delta>=0?'+':''}${delta.toLocaleString('en-IN')}</td>
+          <td class="num" style="color:${(h.xirr||0)>5?'var(--gain)':'var(--loss)'}">${editableNum('india.holdings.'+i+'.xirr', h.xirr)}%</td>
+          <td>${flagBadge(h.flags)}</td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table></div>
   </div>
-
-  <!-- Nifty PE gauge -->
   <div class="card" style="margin-top:16px;">
     <div class="section-title">Market Valuation — Nifty 50 PE</div>
-    <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:8px;">
-      <span style="font-size:28px;font-weight:700;" class="mono">19.07</span>
-      <span style="font-size:12px;color:var(--fg-muted)">5Y Median: 22.12</span>
-    </div>
-    <div class="threshold-meter">
-      <div class="threshold-fill" style="width:52%;background:var(--gain)"></div>
-      <div class="threshold-mark" style="left:45%;background:var(--loss)" title="Deploy threshold: PE < 18"></div>
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--fg-muted);margin-top:6px;">
-      <span>12 (cheap)</span>
-      <span style="color:var(--loss)">▼ Deploy < 18</span>
-      <span>30 (expensive)</span>
-    </div>
-    <div style="margin-top:10px;font-size:12px;color:var(--fg-secondary);">
-      Current PE is 14% below 5Y median — market is reasonably valued. Reserve deployment threshold (PE &lt; 18) not yet triggered.
-    </div>
-  </div>
-</div>
+    ${peMeter(pe.current, pe.deployThreshold, pe.median5Y)}
+  </div>`;
+}
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- TAB: US PORTFOLIO                          -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-us">
+function renderUS() {
+  const d = DATA;
+  const n = d.us.holdings.length;
+  const perPos = Math.round(d.budget.us.monthly / n);
+  const sp = d.market.sp500;
+  const drawdown = sp.drawdownPct || 0;
+  const drawFill = Math.min(100, Math.abs(drawdown) / 30 * 100);
+  const threshPct = Math.abs(sp.deployThreshold) / 30 * 100;
+  return `
   <div class="stat-grid">
-    <div class="stat-tile">
-      <div class="stat-label">Monthly Budget</div>
-      <div class="stat-value">$100</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-label">Positions</div>
-      <div class="stat-value">11</div>
-      <div class="stat-delta down">Over-diversified</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-label">Per Position</div>
-      <div class="stat-value mono">~$9</div>
-      <div style="font-size:11px;color:var(--fg-muted);margin-top:4px;">Below meaningful scale</div>
-    </div>
-    <div class="stat-tile">
-      <div class="stat-label">Recommended</div>
-      <div class="stat-value" style="font-size:18px;">$70 SPY + $30 reserve</div>
-    </div>
+    <div class="stat-tile"><div class="stat-label">Monthly Budget</div><div class="stat-value">$${d.budget.us.monthly}</div></div>
+    <div class="stat-tile"><div class="stat-label">Positions</div><div class="stat-value">${n}</div>${n>5?'<div class="stat-delta down">Over-diversified</div>':''}</div>
+    <div class="stat-tile"><div class="stat-label">Per Position</div><div class="stat-value mono">~$${perPos}</div></div>
+    <div class="stat-tile"><div class="stat-label">Recommended</div><div class="stat-value" style="font-size:18px;">$70 SPY + $30 reserve</div></div>
   </div>
-
   <div class="main-grid">
     <div class="card">
       <div class="section-title">Current Holdings — Webull</div>
-      <div class="table-wrap">
-        <table class="data-table">
-          <thead><tr><th>Ticker</th><th>Name</th><th>Type</th><th>Role</th></tr></thead>
-          <tbody>
-            <tr><td class="mono"><strong>SPY</strong></td><td>S&P 500 ETF</td><td>ETF</td><td>Core Index</td></tr>
-            <tr><td class="mono"><strong>GLD</strong></td><td>Gold ETF</td><td>ETF</td><td>Inflation Hedge</td></tr>
-            <tr><td class="mono"><strong>TSLA</strong></td><td>Tesla</td><td>Stock</td><td>High-Beta Growth</td></tr>
-            <tr><td class="mono"><strong>AAPL</strong></td><td>Apple</td><td>Stock</td><td>Large Cap Quality</td></tr>
-            <tr><td class="mono"><strong>AVGO</strong></td><td>Broadcom</td><td>Stock</td><td>Semiconductor</td></tr>
-            <tr><td class="mono"><strong>GOOGL</strong></td><td>Alphabet</td><td>Stock</td><td>Ad/Cloud/AI</td></tr>
-            <tr><td class="mono"><strong>NVDA</strong></td><td>Nvidia</td><td>Stock</td><td>AI Infrastructure</td></tr>
-            <tr><td class="mono"><strong>ORCL</strong></td><td>Oracle</td><td>Stock</td><td>Enterprise Cloud</td></tr>
-            <tr><td class="mono"><strong>JNK</strong></td><td>High Yield Bond</td><td>ETF</td><td>Income</td></tr>
-            <tr><td class="mono"><strong>BIL</strong></td><td>1-3 Mo T-Bill</td><td>ETF</td><td>Cash Equiv</td></tr>
-            <tr><td class="mono"><strong>SHY</strong></td><td>1-3 Yr Treasury</td><td>ETF</td><td>Short Duration</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Ticker</th><th>Name</th><th>Type</th><th>Role</th></tr></thead>
+        <tbody>${d.us.holdings.map(h=>`<tr><td class="mono"><strong>${h.ticker}</strong></td><td>${h.name}</td><td>${h.type}</td><td>${h.role}</td></tr>`).join('')}</tbody>
+      </table></div>
     </div>
-
     <div class="card">
-      <div class="section-title">Consolidation Recommendation</div>
-      <div style="font-size:13px;color:var(--fg-secondary);line-height:1.7;margin-bottom:14px;">
-        At $100/month across 11 positions, each position gets ~$9 — too thin for meaningful compounding. Recommended restructure:
+      <div class="section-title">S&P 500 Correction Monitor</div>
+      <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
+        <span class="mono" style="font-size:20px;font-weight:700;">${editMode
+          ? `<span class="editable"><input type="number" data-path="market.sp500.drawdownPct" value="${drawdown}" step="0.1" style="width:80px"></span>`
+          : (drawdown === 0 ? '—' : drawdown + '%')}</span>
+        <span style="font-size:12px;color:var(--fg-muted)">from 52-week high</span>
       </div>
-      <div class="strategy-block">
-        <div class="strategy-header">
-          <div class="strategy-flag" style="background:var(--us-accent)"></div>
-          <div><strong style="font-size:14px;">Core: $70/mo → SPY or VOO</strong></div>
-        </div>
-        <div style="font-size:12px;color:var(--fg-secondary)">Broad market exposure, lowest cost, highest diversification per dollar</div>
+      <div class="threshold-meter">
+        <div class="threshold-fill" style="width:${drawFill}%;background:var(--us-accent)"></div>
+        <div class="threshold-mark" style="left:${threshPct}%;background:var(--loss)"></div>
       </div>
-      <div class="strategy-block">
-        <div class="strategy-header">
-          <div class="strategy-flag" style="background:var(--series-2)"></div>
-          <div><strong style="font-size:14px;">Reserve: $30/mo → Cash buffer</strong></div>
-        </div>
-        <div style="font-size:12px;color:var(--fg-secondary)">Deploy on S&P 500 corrections ≥ 10% from 52-week high</div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--fg-muted);margin-top:6px;">
+        <span>0% (ATH)</span><span style="color:var(--loss)">▼ Deploy at ${sp.deployThreshold}%</span><span>-30% (crash)</span>
       </div>
-
-      <!-- S&P threshold gauge -->
       <div style="margin-top:16px;">
-        <div class="section-title">S&P 500 Correction Monitor</div>
-        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:6px;">
-          <span class="mono" style="font-size:20px;font-weight:700;">—</span>
-          <span style="font-size:12px;color:var(--fg-muted)">Update with current drawdown %</span>
+        <div class="strategy-block">
+          <div class="strategy-header"><div class="strategy-flag" style="background:var(--us-accent)"></div>
+          <div><strong>Core: $70/mo → SPY or VOO</strong><div style="font-size:12px;color:var(--fg-secondary)">Broad market, lowest cost</div></div></div>
         </div>
-        <div class="threshold-meter">
-          <div class="threshold-fill" style="width:5%;background:var(--us-accent)"></div>
-          <div class="threshold-mark" style="left:33%;background:var(--loss)" title="Deploy threshold: -10%"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--fg-muted);margin-top:6px;">
-          <span>0% (ATH)</span>
-          <span style="color:var(--loss)">▼ Deploy at -10%</span>
-          <span>-30% (crash)</span>
+        <div class="strategy-block">
+          <div class="strategy-header"><div class="strategy-flag" style="background:var(--series-2)"></div>
+          <div><strong>Reserve: $30/mo → Cash buffer</strong><div style="font-size:12px;color:var(--fg-secondary)">Deploy on corrections ≥ 10%</div></div></div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>`;
+}
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- TAB: SIP TRACKER                           -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-sip">
+function renderSIP() {
+  const d = DATA;
+  return `
   <div class="section-title">Active SIPs</div>
   <div class="card" style="margin-bottom:16px;">
-    <div class="table-wrap">
-      <table class="data-table">
-        <thead>
-          <tr><th>Fund / Ticker</th><th>Market</th><th class="num">SIP Amount</th><th class="num">Frequency</th><th>Status</th><th>Notes</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>ABSL ELSS Tax Saver</strong></td>
-            <td><span class="market-chip india">🇮🇳</span></td>
-            <td class="num">₹—</td>
-            <td class="num">Monthly</td>
-            <td><span class="badge active">Active</span></td>
-            <td style="font-size:11px;color:var(--fg-muted)">ELSS, 3yr lock-in</td>
-          </tr>
-          <tr>
-            <td><strong>Axis Small Cap</strong></td>
-            <td><span class="market-chip india">🇮🇳</span></td>
-            <td class="num">₹—</td>
-            <td class="num">Monthly</td>
-            <td><span class="badge active">Active</span></td>
-            <td style="font-size:11px;color:var(--fg-muted)">Top performer, 13.75% XIRR</td>
-          </tr>
-          <tr>
-            <td><strong>SBI Contra Fund</strong></td>
-            <td><span class="market-chip india">🇮🇳</span></td>
-            <td class="num">₹—</td>
-            <td class="num">Monthly</td>
-            <td><span class="badge urgent">Review</span></td>
-            <td style="font-size:11px;color:var(--loss)">Regular plan — switch to Direct</td>
-          </tr>
-          <tr>
-            <td><strong>SPY (recommended)</strong></td>
-            <td><span class="market-chip us">🇺🇸</span></td>
-            <td class="num">$70</td>
-            <td class="num">Monthly</td>
-            <td><span class="badge opportunity">Proposed</span></td>
-            <td style="font-size:11px;color:var(--fg-muted)">Core US allocation</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Fund / Ticker</th><th>Market</th><th class="num">Amount</th><th class="num">Frequency</th><th>Status</th><th>Notes</th></tr></thead>
+      <tbody>${d.sips.map((s,i) => {
+        const mkt = s.market === 'india' ? '<span class="market-chip india">🇮🇳</span>' : '<span class="market-chip us">🇺🇸</span>';
+        const cur = s.market === 'india' ? 'INR' : 'USD';
+        const fund = d.india.holdings.find(h=>h.id===s.fundId) || d.us.holdings.find(h=>h.id===s.fundId);
+        const name = fund ? fund.name || fund.ticker : s.fundId;
+        return `<tr>
+          <td><strong>${name}</strong></td>
+          <td>${mkt}</td>
+          <td class="num">${editableNum('sips.'+i+'.amount', s.amount, cur)}</td>
+          <td class="num">${s.frequency}</td>
+          <td><span class="badge ${badgeClass(s.status)}">${s.status.charAt(0).toUpperCase()+s.status.slice(1)}</span></td>
+          <td style="font-size:11px;color:${s.status==='review'?'var(--loss)':'var(--fg-muted)'}">${s.notes}</td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table></div>
   </div>
-
   <div class="main-grid">
     <div class="card">
-      <div class="section-title">Recommended SIP Allocation — India ₹15,000/mo</div>
+      <div class="section-title">Recommended — India ₹${(d.budget.india.monthly/1000).toFixed(0)}K/mo</div>
       <div class="alloc-bar" style="height:10px;">
         <div class="alloc-seg" style="flex:50;background:var(--series-1)"></div>
         <div class="alloc-seg" style="flex:30;background:var(--series-3)"></div>
@@ -814,7 +570,7 @@ h1, h2, h3 { text-wrap: balance; }
       </div>
     </div>
     <div class="card">
-      <div class="section-title">Recommended SIP Allocation — US $100/mo</div>
+      <div class="section-title">Recommended — US $${d.budget.us.monthly}/mo</div>
       <div class="alloc-bar" style="height:10px;">
         <div class="alloc-seg" style="flex:70;background:var(--series-1)"></div>
         <div class="alloc-seg" style="flex:30;background:var(--series-4)"></div>
@@ -824,239 +580,288 @@ h1, h2, h3 { text-wrap: balance; }
         <span><span class="alloc-legend-dot" style="background:var(--series-4)"></span>$30 Cash Reserve</span>
       </div>
     </div>
-  </div>
-</div>
+  </div>`;
+}
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- TAB: BURST LOG                             -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-burst">
-  <div class="card">
+function renderBurst() {
+  const d = DATA;
+  const hasBursts = d.bursts && d.bursts.length > 0;
+  return `<div class="card">
     <div class="section-header">
       <div class="section-title" style="margin:0">Burst (Lump-Sum) Execution Log</div>
       <span style="font-size:11px;color:var(--fg-muted)">Deployments during corrections</span>
     </div>
+    ${editMode ? `
+    <div class="burst-form" id="burstForm">
+      <div><label>Market</label><select id="bf-market"><option value="india">🇮🇳 India</option><option value="us">🇺🇸 US</option></select></div>
+      <div><label>Amount</label><input type="number" id="bf-amount" placeholder="5000"></div>
+      <div><label>Date</label><input type="date" id="bf-date" value="${new Date().toISOString().slice(0,10)}"></div>
+      <button class="hdr-btn" onclick="addBurst()">+ Add</button>
+    </div>` : ''}
+    ${hasBursts ? `<div class="table-wrap"><table class="data-table">
+      <thead><tr><th>Date</th><th>Market</th><th class="num">Amount</th><th>Trigger</th><th>Notes</th></tr></thead>
+      <tbody>${d.bursts.map(b => `<tr>
+        <td class="mono">${b.date}</td>
+        <td><span class="market-chip ${b.market}">${b.market==='india'?'🇮🇳':'🇺🇸'}</span></td>
+        <td class="num">${fmt(b.amount, b.market==='india'?'INR':'USD')}</td>
+        <td>${b.trigger||'Manual'}</td>
+        <td style="font-size:12px;color:var(--fg-secondary)">${b.notes||''}</td>
+      </tr>`).join('')}</tbody>
+    </table></div>` : `
     <div style="padding:30px 0;text-align:center;color:var(--fg-muted);font-size:13px;">
       <div style="font-size:28px;margin-bottom:8px;">📋</div>
       <div>No burst executions recorded yet.</div>
-      <div style="margin-top:6px;font-size:12px;">When market correction thresholds are hit, recommended deployments and their outcomes will appear here.</div>
-    </div>
+      <div style="margin-top:6px;font-size:12px;">When market correction thresholds are hit, deployments will appear here.${editMode?' Use the form above to log one.':''}</div>
+    </div>`}
     <div style="border-top:1px solid var(--border);padding-top:14px;margin-top:14px;">
       <div class="section-title">Trigger Conditions</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
         <div class="strategy-block">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-            <span class="market-chip india">🇮🇳</span>
-            <strong>Nifty PE &lt; 18</strong>
-          </div>
-          <div style="font-size:12px;color:var(--fg-secondary)">Deploy India reserve (₹3,000/mo accumulation) into Nifty index funds</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span class="market-chip india">🇮🇳</span><strong>Nifty PE &lt; ${d.market.niftyPE.deployThreshold}</strong></div>
+          <div style="font-size:12px;color:var(--fg-secondary)">Deploy India reserve into Nifty index funds</div>
         </div>
         <div class="strategy-block">
-          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
-            <span class="market-chip us">🇺🇸</span>
-            <strong>S&P 500 ≥ -10%</strong>
-          </div>
-          <div style="font-size:12px;color:var(--fg-secondary)">Deploy US reserve ($30/mo accumulation) into SPY/VOO</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span class="market-chip us">🇺🇸</span><strong>S&P 500 ≥ ${d.market.sp500.deployThreshold}%</strong></div>
+          <div style="font-size:12px;color:var(--fg-secondary)">Deploy US reserve into SPY/VOO</div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div>`;
+}
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- TAB: OPPORTUNITIES                         -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-opportunities">
-  <div class="main-grid">
+function renderOpportunities() {
+  const d = DATA;
+  const alerts = d.opportunities.filter(o => o.type === 'alert');
+  const upcoming = d.opportunities.filter(o => o.type === 'upcoming');
+  const borderColor = o => o.badge === 'Action Needed' ? 'var(--warn)' : 'var(--accent)';
+  return `<div class="main-grid">
     <div class="card">
       <div class="section-title">🔔 Active Alerts</div>
-      <div class="opp-list">
-        <div class="opp-card" style="border-left: 3px solid var(--warn);">
-          <div class="opp-card-header">
-            <span class="opp-title">SBI Contra: Regular → Direct Switch</span>
-            <span class="badge urgent">Action Needed</span>
-          </div>
-          <div class="opp-detail">You're losing ~0.8–1.5% annually to the regular plan's higher expense ratio. At ₹5,000 invested, this costs ₹40–75/yr now but compounds as the position grows.</div>
-        </div>
-        <div class="opp-card" style="border-left: 3px solid var(--accent);">
-          <div class="opp-card-header">
-            <span class="opp-title">Nifty PE at 19.07 — Approaching Value Zone</span>
-            <span class="badge opportunity">Monitor</span>
-          </div>
-          <div class="opp-detail">14% below 5Y median (22.12). If PE drops below 18, trigger a burst deployment of accumulated India reserve into Nifty index funds.</div>
-        </div>
+      <div class="opp-list">${alerts.map(o => `
+        <div class="opp-card" style="border-left:3px solid ${borderColor(o)}">
+          <div class="opp-card-header"><span class="opp-title">${o.title}</span><span class="badge ${o.badge==='Action Needed'?'urgent':'opportunity'}">${o.badge}</span></div>
+          <div class="opp-detail">${o.detail}</div>
+        </div>`).join('')}
+        ${alerts.length===0?'<div style="padding:16px;text-align:center;color:var(--fg-muted);font-size:13px;">No active alerts</div>':''}
       </div>
     </div>
-
     <div class="card">
       <div class="section-title">📡 Upcoming Opportunities</div>
-      <div class="opp-list">
+      <div class="opp-list">${upcoming.map(o => `
         <div class="opp-card">
-          <div class="opp-card-header">
-            <span class="opp-title">US Market Consolidation</span>
-            <span class="badge opportunity">Watch</span>
-          </div>
-          <div class="opp-detail">Build cash reserve ($30/mo). Deploy entire reserve when S&P 500 pulls back ≥ 10% from 52-week high. Historical average recovery: 4–6 months.</div>
-        </div>
-        <div class="opp-card">
-          <div class="opp-card-header">
-            <span class="opp-title">Start Nifty 50 Index SIP</span>
-            <span class="badge opportunity">Recommended</span>
-          </div>
-          <div class="opp-detail">Allocate ₹7,500/mo to a low-cost Nifty 50 index fund (UTI Nifty 50 or Nippon Nifty 50, Direct). Core allocation currently missing from India portfolio.</div>
-        </div>
-        <div class="opp-card">
-          <div class="opp-card-header">
-            <span class="opp-title">Nifty Next 50 — Moderately Undervalued</span>
-            <span class="badge opportunity">Research</span>
-          </div>
-          <div class="opp-detail">PE at 18.88, 18% below 5Y median. Consider adding after Nifty 50 index core is established. Good mid-cap exposure at current valuations.</div>
-        </div>
+          <div class="opp-card-header"><span class="opp-title">${o.title}</span><span class="badge opportunity">${o.badge}</span></div>
+          <div class="opp-detail">${o.detail}</div>
+        </div>`).join('')}
       </div>
     </div>
-  </div>
-</div>
+  </div>`;
+}
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- TAB: STRATEGY                              -->
-<!-- ═══════════════════════════════════════════ -->
-<div class="tab-panel" id="panel-strategy">
-  <div class="main-grid">
+function renderStrategy() {
+  const d = DATA;
+  const checks = [
+    { pass: false, text: 'No core Nifty 50 index fund in India portfolio' },
+    { pass: false, text: 'SBI Contra on Regular plan (should be Direct)' },
+    { pass: false, text: 'US portfolio over-diversified for $'+d.budget.us.monthly+'/mo budget' },
+    { pass: 'warn', text: 'ELSS fund not tax-efficient for H-1B filing' },
+    { pass: true, text: 'Axis Small Cap performing well (13.75% XIRR)' },
+    { pass: true, text: 'Monthly investment discipline established' },
+    { pass: true, text: 'Dual-market diversification (India + US)' }
+  ];
+  return `<div class="main-grid">
     <div class="card">
       <div class="section-title">Investment Framework</div>
-      <div class="strategy-block">
-        <div class="strategy-header">
-          <div class="strategy-flag" style="background:var(--series-1)"></div>
-          <div>
-            <strong style="font-size:14px;">80 / 20 Rule</strong>
-            <div style="font-size:12px;color:var(--fg-secondary)">80% systematic SIP · 20% tactical reserve</div>
-          </div>
-        </div>
-      </div>
-      <div class="strategy-block">
-        <div class="strategy-header">
-          <div class="strategy-flag" style="background:var(--gain)"></div>
-          <div>
-            <strong style="font-size:14px;">Time Horizon</strong>
-            <div style="font-size:12px;color:var(--fg-secondary)">Long-term wealth building + short-term tactical bursts on corrections</div>
-          </div>
-        </div>
-      </div>
-      <div class="strategy-block">
-        <div class="strategy-header">
-          <div class="strategy-flag" style="background:var(--series-2)"></div>
-          <div>
-            <strong style="font-size:14px;">Correction Thresholds</strong>
-            <div style="font-size:12px;color:var(--fg-secondary)">India: Nifty PE &lt; 18 · US: S&P 500 drawdown ≥ 10%</div>
-          </div>
-        </div>
-      </div>
+      <div class="strategy-block"><div class="strategy-header"><div class="strategy-flag" style="background:var(--series-1)"></div><div><strong>80 / 20 Rule</strong><div style="font-size:12px;color:var(--fg-secondary)">80% systematic SIP · 20% tactical reserve</div></div></div></div>
+      <div class="strategy-block"><div class="strategy-header"><div class="strategy-flag" style="background:var(--gain)"></div><div><strong>Time Horizon</strong><div style="font-size:12px;color:var(--fg-secondary)">Long-term wealth building + short-term tactical bursts</div></div></div></div>
+      <div class="strategy-block"><div class="strategy-header"><div class="strategy-flag" style="background:var(--series-2)"></div><div><strong>Correction Thresholds</strong><div style="font-size:12px;color:var(--fg-secondary)">India: Nifty PE &lt; ${d.market.niftyPE.deployThreshold} · US: S&P 500 ≥ ${d.market.sp500.deployThreshold}%</div></div></div></div>
     </div>
-
     <div class="card">
       <div class="section-title">Portfolio Health Checklist</div>
       <div style="display:flex;flex-direction:column;gap:10px;font-size:13px;">
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="color:var(--loss);font-size:16px;">✗</span>
-          <span>No core Nifty 50 index fund in India portfolio</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="color:var(--loss);font-size:16px;">✗</span>
-          <span>SBI Contra on Regular plan (should be Direct)</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="color:var(--loss);font-size:16px;">✗</span>
-          <span>US portfolio over-diversified for $100/mo budget</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="color:var(--warn);font-size:16px;">△</span>
-          <span>ELSS fund not tax-efficient for H-1B filing</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="color:var(--gain);font-size:16px;">✓</span>
-          <span>Axis Small Cap performing well (13.75% XIRR)</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="color:var(--gain);font-size:16px;">✓</span>
-          <span>Monthly investment discipline established</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span style="color:var(--gain);font-size:16px;">✓</span>
-          <span>Dual-market diversification (India + US)</span>
-        </div>
+        ${checks.map(c => {
+          const icon = c.pass === true ? '✓' : c.pass === 'warn' ? '△' : '✗';
+          const color = c.pass === true ? 'var(--gain)' : c.pass === 'warn' ? 'var(--warn)' : 'var(--loss)';
+          return `<div style="display:flex;align-items:center;gap:8px;"><span style="color:${color};font-size:16px;">${icon}</span><span>${c.text}</span></div>`;
+        }).join('')}
       </div>
     </div>
   </div>
-
   <div class="card" style="margin-top:16px;">
     <div class="section-title">Monitoring Schedule</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
-      <div class="strategy-block">
-        <strong>Weekly Intelligence Brief</strong>
-        <div style="font-size:12px;color:var(--fg-secondary);margin-top:4px;">Monday 8 AM ET — Nifty PE check, S&P 500 drawdown, macro triggers, watchlist movers</div>
-      </div>
-      <div class="strategy-block">
-        <strong>Quarterly Strategy Review</strong>
-        <div style="font-size:12px;color:var(--fg-secondary);margin-top:4px;">SIP performance evaluation, rebalancing signals, tax-loss harvesting (US), expense ratio audit</div>
-      </div>
+      <div class="strategy-block"><strong>Weekly Intelligence Brief</strong><div style="font-size:12px;color:var(--fg-secondary);margin-top:4px;">Monday 8 AM ET — auto-updated by Claude</div></div>
+      <div class="strategy-block"><strong>Quarterly Strategy Review</strong><div style="font-size:12px;color:var(--fg-secondary);margin-top:4px;">Jan/Apr/Jul/Oct — full portfolio analysis</div></div>
     </div>
-  </div>
-</div>
-
-<!-- ═══════════ FOOTER ═══════════ -->
-<div class="footer">
-  Investment Command Center · Data manually synced from Groww &amp; Webull<br>
-  This dashboard is for informational and educational purposes only — not personalized financial advice.<br>
-  Update data via Claude chat with portfolio screenshots or CSV exports.
-</div>
-
-<script>
-// ── Tab navigation ──
-const tabs = document.querySelectorAll('.nav-tab');
-const panels = document.querySelectorAll('.tab-panel');
-
-function switchTab(tabName) {
-  tabs.forEach(t => { t.classList.toggle('active', t.dataset.tab === tabName); t.setAttribute('aria-selected', t.dataset.tab === tabName); });
-  panels.forEach(p => { p.classList.toggle('active', p.id === 'panel-' + tabName); });
-  try { localStorage.setItem('icc-tab', tabName); } catch(e) {}
+  </div>`;
 }
 
-tabs.forEach(t => t.addEventListener('click', () => switchTab(t.dataset.tab)));
+// ─── Main render ───
+function render() {
+  const app = document.getElementById('app');
+  if (!DATA) { app.innerHTML = '<div style="text-align:center;padding:40px;color:var(--fg-muted)">Loading data...</div>'; return; }
+  document.getElementById('lastUpdated').textContent = 'Last sync: ' + (DATA.meta.lastSync || '—');
+  if (editMode) document.body.classList.add('edit-mode'); else document.body.classList.remove('edit-mode');
+  const renderers = { overview: renderOverview, india: renderIndia, us: renderUS, sip: renderSIP, burst: renderBurst, opportunities: renderOpportunities, strategy: renderStrategy };
+  app.innerHTML = `<div class="tab-panel active">${(renderers[activeTab] || renderOverview)()}</div>`;
+}
 
-// Restore last tab
-try {
-  const saved = localStorage.getItem('icc-tab');
-  if (saved && document.getElementById('panel-' + saved)) switchTab(saved);
-} catch(e) {}
+// ─── Edit mode ───
+function enterEdit() {
+  editMode = true;
+  document.getElementById('btnEdit').hidden = true;
+  document.getElementById('btnSave').hidden = false;
+  document.getElementById('btnCancel').hidden = false;
+  render();
+  toast('Edit mode — click values to change them');
+}
+function exitEdit(discard) {
+  editMode = false;
+  document.getElementById('btnEdit').hidden = false;
+  document.getElementById('btnSave').hidden = true;
+  document.getElementById('btnCancel').hidden = true;
+  if (discard) { pendingChanges = {}; loadData(); }
+  render();
+}
 
-// ── Theme toggle ──
-const toggle = document.getElementById('themeToggle');
-function applyTheme(theme) {
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    toggle.textContent = '☀️';
-  } else if (theme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-    toggle.textContent = '🌙';
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    toggle.textContent = '🌓';
+function collectEdits() {
+  document.querySelectorAll('.editable input').forEach(inp => {
+    const path = inp.dataset.path;
+    const val = inp.value === '' ? null : parseFloat(inp.value);
+    setPath(DATA, path, val);
+  });
+}
+
+function setPath(obj, path, val) {
+  const keys = path.split('.');
+  let cur = obj;
+  for (let i = 0; i < keys.length - 1; i++) {
+    const k = isNaN(keys[i]) ? keys[i] : parseInt(keys[i]);
+    cur = cur[k];
   }
-  try { localStorage.setItem('icc-theme', theme); } catch(e) {}
+  const last = isNaN(keys[keys.length-1]) ? keys[keys.length-1] : parseInt(keys[keys.length-1]);
+  cur[last] = val;
 }
 
-toggle.addEventListener('click', () => {
-  const current = document.documentElement.getAttribute('data-theme');
-  if (!current) applyTheme('dark');
-  else if (current === 'dark') applyTheme('light');
-  else applyTheme('system');
+function addBurst() {
+  const market = document.getElementById('bf-market').value;
+  const amount = parseFloat(document.getElementById('bf-amount').value);
+  const date = document.getElementById('bf-date').value;
+  if (!amount || !date) { toast('Fill in amount and date'); return; }
+  DATA.bursts.push({ date, market, amount, trigger: 'Manual', notes: '' });
+  render();
+  toast('Burst entry added — save to persist');
+}
+
+// ─── GitHub commit ───
+async function saveToGitHub() {
+  collectEdits();
+  DATA.meta.lastSync = new Date().toISOString().slice(0, 10);
+  DATA.meta.version = (DATA.meta.version || 0) + 1;
+
+  const pat = getPAT();
+  if (!pat) { showSettings(); toast('Set up GitHub PAT first'); return; }
+
+  toast('Saving to GitHub...', 5000);
+  try {
+    // Get current file SHA
+    const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${DATA_PATH}?ref=${BRANCH}`, {
+      headers: { 'Authorization': 'token ' + pat, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    let sha = null;
+    if (getRes.ok) { const j = await getRes.json(); sha = j.sha; }
+
+    // Commit updated data.json
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(DATA, null, 2))));
+    const body = {
+      message: 'Update portfolio data — ' + DATA.meta.lastSync,
+      content: content,
+      branch: BRANCH
+    };
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${DATA_PATH}`, {
+      method: 'PUT',
+      headers: { 'Authorization': 'token ' + pat, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    if (putRes.ok) {
+      toast('Saved to GitHub ✓');
+      exitEdit(false);
+    } else {
+      const err = await putRes.json();
+      toast('GitHub error: ' + (err.message || putRes.status), 4000);
+    }
+  } catch(e) {
+    toast('Network error: ' + e.message, 4000);
+  }
+}
+
+// ─── Settings ───
+function showSettings() {
+  const existing = document.getElementById('settingsOverlay');
+  if (existing) existing.remove();
+  const div = document.createElement('div');
+  div.id = 'settingsOverlay';
+  div.className = 'settings-overlay';
+  div.innerHTML = `<div class="settings-panel">
+    <h2>⚙️ Dashboard Settings</h2>
+    <label>GitHub Personal Access Token</label>
+    <input type="password" id="patInput" value="${getPAT()}" placeholder="github_pat_...">
+    <div class="hint">
+      <span class="conn-dot ${hasPAT()?'ok':'no'}"></span>
+      ${hasPAT() ? 'Connected — edits save directly to the repo' : 'Not connected — generate a fine-grained PAT at github.com/settings/tokens'}<br>
+      Scope: <strong>raydrift/fincommand</strong> repo only, <strong>Contents: Read & Write</strong>.<br>
+      Stored in sessionStorage (cleared when you close the tab).
+    </div>
+    <div class="btn-row">
+      <button onclick="document.getElementById('settingsOverlay').remove()">Cancel</button>
+      <button class="primary" onclick="savePAT()">Save</button>
+    </div>
+  </div>`;
+  document.body.appendChild(div);
+  div.addEventListener('click', e => { if (e.target === div) div.remove(); });
+}
+
+function savePAT() {
+  const val = document.getElementById('patInput').value.trim();
+  setPAT(val);
+  document.getElementById('settingsOverlay').remove();
+  toast(val ? 'PAT saved for this session' : 'PAT cleared');
+}
+
+// ─── Theme ───
+function applyTheme(t) {
+  if (t === 'dark') { document.documentElement.setAttribute('data-theme','dark'); document.getElementById('btnTheme').textContent = '☀️'; }
+  else if (t === 'light') { document.documentElement.setAttribute('data-theme','light'); document.getElementById('btnTheme').textContent = '🌙'; }
+  else { document.documentElement.removeAttribute('data-theme'); document.getElementById('btnTheme').textContent = '🌓'; }
+  try { localStorage.setItem('icc-theme', t); } catch(e) {}
+}
+document.getElementById('btnTheme').addEventListener('click', () => {
+  const c = document.documentElement.getAttribute('data-theme');
+  applyTheme(!c ? 'dark' : c === 'dark' ? 'light' : 'system');
 });
+try { const t = localStorage.getItem('icc-theme'); if (t) applyTheme(t); } catch(e) {}
 
-try {
-  const savedTheme = localStorage.getItem('icc-theme');
-  if (savedTheme) applyTheme(savedTheme);
-} catch(e) {}
+// ─── Wire buttons ───
+document.getElementById('btnEdit').addEventListener('click', enterEdit);
+document.getElementById('btnSave').addEventListener('click', saveToGitHub);
+document.getElementById('btnCancel').addEventListener('click', () => exitEdit(true));
+document.getElementById('btnSettings').addEventListener('click', showSettings);
+
+// ─── Load data ───
+async function loadData() {
+  try {
+    const res = await fetch('data.json?t=' + Date.now());
+    if (res.ok) { DATA = await res.json(); render(); }
+    else throw new Error('HTTP ' + res.status);
+  } catch(e) {
+    document.getElementById('app').innerHTML = `<div style="text-align:center;padding:40px;color:var(--loss)">Failed to load data.json: ${e.message}</div>`;
+  }
+}
+
+renderTabs();
+loadData();
 </script>
-
 </body>
 </html>
