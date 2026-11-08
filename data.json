@@ -1,24 +1,20 @@
 {
   "meta": {
-    "lastSync": "2026-11-07",
-    "lastMarketUpdate": "2026-11-07",
-    "version": 1
+    "lastSync": "2026-11-08",
+    "lastMarketUpdate": "2026-11-08",
+    "version": 2
   },
   "market": {
     "niftyPE": {
-      "current": 19.07,
+      "current": 20.65,
       "median5Y": 22.12,
       "deployThreshold": 18
     },
     "sp500": {
-      "drawdownPct": 0,
-      "high52w": null,
-      "current": null,
+      "current": 7377,
+      "high52w": 7819,
+      "drawdownPct": 5.7,
       "deployThreshold": -10
-    },
-    "niftyNext50PE": {
-      "current": 18.88,
-      "median5Y": 23.0
     }
   },
   "budget": {
@@ -28,26 +24,15 @@
   "india": {
     "holdings": [
       {
-        "id": "absl-elss",
-        "name": "ABSL ELSS Tax Saver",
+        "id": "ppfas-flexi",
+        "name": "Parag Parikh Flexi Cap",
         "plan": "Direct",
         "type": "Growth",
-        "invested": 13832,
-        "current": 15180,
-        "xirr": 7.68,
-        "flags": ["ELSS Lock-in"],
-        "notes": "ELSS 80C deduction doesn't apply to US tax returns (H-1B)"
-      },
-      {
-        "id": "sbi-contra",
-        "name": "SBI Contra Fund",
-        "plan": "Regular",
-        "type": "External",
-        "invested": 5000,
-        "current": 5003,
-        "xirr": 1.90,
-        "flags": ["Switch to Direct"],
-        "notes": "Regular plan — higher expense ratio, ~0.8-1.5% annual drag"
+        "invested": null,
+        "current": null,
+        "xirr": null,
+        "flags": ["Core"],
+        "notes": "Core India+US diversified equity; ₹5,000/mo SIP"
       },
       {
         "id": "axis-smallcap",
@@ -58,42 +43,78 @@
         "current": 4271,
         "xirr": 13.75,
         "flags": ["Top Performer"],
-        "notes": ""
+        "notes": "Small cap exposure; ₹4,000/mo SIP"
+      },
+      {
+        "id": "hdfc-midcap",
+        "name": "HDFC Mid-Cap Opportunities",
+        "plan": "Direct",
+        "type": "Growth",
+        "invested": null,
+        "current": null,
+        "xirr": null,
+        "flags": ["Core"],
+        "notes": "Mid cap exposure; ₹3,000/mo SIP"
+      },
+      {
+        "id": "absl-elss",
+        "name": "ABSL ELSS Tax Saver",
+        "plan": "Direct",
+        "type": "Growth",
+        "invested": 13832,
+        "current": 15180,
+        "xirr": 7.68,
+        "flags": ["ELSS Lock-in", "Exiting"],
+        "notes": "Legacy — redeem units past 3-year lock-in"
+      },
+      {
+        "id": "sbi-contra",
+        "name": "SBI Contra Fund",
+        "plan": "Regular",
+        "type": "External",
+        "invested": 5000,
+        "current": 5003,
+        "xirr": 1.90,
+        "flags": ["Exiting"],
+        "notes": "Legacy Regular plan — sell on green days"
       }
     ]
   },
   "us": {
     "holdings": [
-      { "id": "spy",   "ticker": "SPY",   "name": "SPDR S&P 500 ETF",   "type": "ETF",   "role": "Core Index",       "category": "core" },
-      { "id": "nvda",  "ticker": "NVDA",  "name": "Nvidia",             "type": "Stock", "role": "AI Infrastructure", "category": "growth" },
-      { "id": "aapl",  "ticker": "AAPL",  "name": "Apple",              "type": "Stock", "role": "Large Cap Quality", "category": "growth" },
-      { "id": "googl", "ticker": "GOOGL", "name": "Alphabet",           "type": "Stock", "role": "Ad/Cloud/AI",       "category": "growth" },
-      { "id": "avgo",  "ticker": "AVGO",  "name": "Broadcom",           "type": "Stock", "role": "Semiconductor",     "category": "growth" },
-      { "id": "tsla",  "ticker": "TSLA",  "name": "Tesla",              "type": "Stock", "role": "High-Beta Growth",  "category": "growth" },
-      { "id": "orcl",  "ticker": "ORCL",  "name": "Oracle",             "type": "Stock", "role": "Enterprise Cloud",  "category": "growth" },
-      { "id": "gld",   "ticker": "GLD",   "name": "SPDR Gold",          "type": "ETF",   "role": "Inflation Hedge",   "category": "hedge" },
-      { "id": "jnk",   "ticker": "JNK",   "name": "High Yield Bond",   "type": "ETF",   "role": "Income",            "category": "income" },
-      { "id": "bil",   "ticker": "BIL",   "name": "1-3 Month T-Bill",   "type": "ETF",   "role": "Cash Equiv",        "category": "cash" },
-      { "id": "shy",   "ticker": "SHY",   "name": "1-3 Year Treasury",  "type": "ETF",   "role": "Short Duration",    "category": "income" }
+      { "id": "voo",   "ticker": "VOO",   "name": "Vanguard S&P 500 ETF", "type": "ETF",   "role": "Core Index",       "category": "core" },
+      { "id": "spy",   "ticker": "SPY",   "name": "SPDR S&P 500 ETF",     "type": "ETF",   "role": "Core Index",       "category": "core" },
+      { "id": "nvda",  "ticker": "NVDA",  "name": "Nvidia",               "type": "Stock", "role": "AI Infrastructure", "category": "growth" },
+      { "id": "aapl",  "ticker": "AAPL",  "name": "Apple",                "type": "Stock", "role": "Large Cap Quality", "category": "growth" },
+      { "id": "googl", "ticker": "GOOGL", "name": "Alphabet",             "type": "Stock", "role": "Ad/Cloud/AI",       "category": "growth" },
+      { "id": "avgo",  "ticker": "AVGO",  "name": "Broadcom",             "type": "Stock", "role": "Semiconductor",     "category": "growth" },
+      { "id": "tsla",  "ticker": "TSLA",  "name": "Tesla",                "type": "Stock", "role": "High-Beta Growth",  "category": "growth" },
+      { "id": "orcl",  "ticker": "ORCL",  "name": "Oracle",               "type": "Stock", "role": "Enterprise Cloud",  "category": "growth" },
+      { "id": "gld",   "ticker": "GLD",   "name": "SPDR Gold",            "type": "ETF",   "role": "Inflation Hedge",   "category": "hedge" },
+      { "id": "jnk",   "ticker": "JNK",   "name": "High Yield Bond",     "type": "ETF",   "role": "Income",            "category": "income", "notes": "Exiting — sell on green day" },
+      { "id": "bil",   "ticker": "BIL",   "name": "1-3 Month T-Bill",     "type": "ETF",   "role": "Cash Equiv",        "category": "cash", "notes": "Exiting — sell anytime" },
+      { "id": "shy",   "ticker": "SHY",   "name": "1-3 Year Treasury",    "type": "ETF",   "role": "Short Duration",    "category": "income", "notes": "Exiting — sell anytime" }
     ]
   },
   "sips": [
-    { "id": "sip-absl",  "fundId": "absl-elss",    "market": "india", "amount": null, "frequency": "Monthly", "status": "active",   "notes": "ELSS, 3yr lock-in" },
-    { "id": "sip-axis",  "fundId": "axis-smallcap", "market": "india", "amount": null, "frequency": "Monthly", "status": "active",   "notes": "Top performer, 13.75% XIRR" },
-    { "id": "sip-sbi",   "fundId": "sbi-contra",    "market": "india", "amount": null, "frequency": "Monthly", "status": "review",   "notes": "Regular plan — switch to Direct" },
-    { "id": "sip-spy",   "fundId": "spy",           "market": "us",    "amount": 70,   "frequency": "Monthly", "status": "proposed", "notes": "Core US allocation" }
+    { "id": "sip-ppfas",  "fundId": "ppfas-flexi",    "market": "india", "amount": 5000, "frequency": "Monthly", "status": "active", "notes": "Core flexi cap — India+US diversified" },
+    { "id": "sip-axis",   "fundId": "axis-smallcap",   "market": "india", "amount": 4000, "frequency": "Monthly", "status": "active", "notes": "Small cap exposure" },
+    { "id": "sip-hdfc",   "fundId": "hdfc-midcap",     "market": "india", "amount": 3000, "frequency": "Monthly", "status": "active", "notes": "Mid cap exposure" },
+    { "id": "sip-reserve","fundId": null,               "market": "india", "amount": 3000, "frequency": "Monthly", "status": "active", "notes": "Reserve — deploy when Nifty PE < 18" },
+    { "id": "sip-voo",    "fundId": "voo",              "market": "us",    "amount": 70,   "frequency": "Monthly", "status": "active", "notes": "Core US DCA" },
+    { "id": "sip-usres",  "fundId": null,               "market": "us",    "amount": 30,   "frequency": "Monthly", "status": "active", "notes": "Reserve — deploy when S&P -10% from high" }
   ],
   "bursts": [],
   "actions": [
-    { "id": "act-1", "severity": "urgent", "title": "Switch SBI Contra from Regular to Direct plan", "detail": "Saving ~0.8-1.5% in expense ratio annually. Current XIRR of 1.90% is largely eaten by fees.", "resolved": false },
-    { "id": "act-2", "severity": "review", "title": "ABSL ELSS Tax Saver", "detail": "ELSS 80C deduction doesn't apply to US tax returns (H-1B). Evaluate whether the 3-year lock-in is justified purely on fund performance.", "resolved": false },
-    { "id": "act-3", "severity": "review", "title": "US portfolio: 11 positions on $100/mo", "detail": "Over-diversified. Consider consolidating to 3-4 core positions (SPY + 2-3 conviction picks).", "resolved": false }
+    { "id": "act-1", "severity": "urgent", "title": "Sell SBI Contra Regular — use current rally", "detail": "India rallied 8.5% this week. Exit this Regular plan position while NAV is elevated.", "resolved": false },
+    { "id": "act-2", "severity": "urgent", "title": "Sell BIL and SHY — stable NAV, exit anytime", "detail": "Ultra-short Treasury ETFs. No reason to time exit. Redeploy to VOO or cash.", "resolved": false },
+    { "id": "act-3", "severity": "review", "title": "Redeem ABSL ELSS units past 3-year lock-in", "detail": "Legacy ELSS position. Redeem eligible units while market is green.", "resolved": false },
+    { "id": "act-4", "severity": "review", "title": "Sell JNK on next green day", "detail": "High-yield bonds face headwinds at 4% Fed funds rate. Credit spreads widened after Nov 5 crash.", "resolved": false },
+    { "id": "act-5", "severity": "watch", "title": "NVDA earnings ~Nov 17 — do NOT add before", "detail": "Down 9% in chip sector rout. Wait for earnings report before any action.", "resolved": false }
   ],
   "opportunities": [
-    { "id": "opp-1", "title": "SBI Contra: Regular → Direct Switch", "type": "alert", "badge": "Action Needed", "detail": "You're losing ~0.8-1.5% annually to the regular plan's higher expense ratio. At ₹5,000 invested, this costs ₹40-75/yr now but compounds as the position grows." },
-    { "id": "opp-2", "title": "Nifty PE at 19.07 — Approaching Value Zone", "type": "alert", "badge": "Monitor", "detail": "14% below 5Y median (22.12). If PE drops below 18, trigger a burst deployment of accumulated India reserve into Nifty index funds." },
-    { "id": "opp-3", "title": "US Market Consolidation", "type": "upcoming", "badge": "Watch", "detail": "Build cash reserve ($30/mo). Deploy entire reserve when S&P 500 pulls back ≥ 10% from 52-week high. Historical average recovery: 4-6 months." },
-    { "id": "opp-4", "title": "Start Nifty 50 Index SIP", "type": "upcoming", "badge": "Recommended", "detail": "Allocate ₹7,500/mo to a low-cost Nifty 50 index fund (UTI Nifty 50 or Nippon Nifty 50, Direct). Core allocation currently missing from India portfolio." },
-    { "id": "opp-5", "title": "Nifty Next 50 — Moderately Undervalued", "type": "upcoming", "badge": "Research", "detail": "PE at 18.88, 18% below 5Y median. Consider adding after Nifty 50 index core is established. Good mid-cap exposure at current valuations." }
+    { "id": "opp-1", "title": "FII massive inflow — ₹46,000 Cr this week", "type": "alert", "badge": "Bullish Signal", "detail": "Foreign investors flipped to massive net buying, reversing 10-week selling streak. Watch if sustained next week." },
+    { "id": "opp-2", "title": "US CPI Nov 10 — key catalyst", "type": "upcoming", "badge": "Watch", "detail": "If CPI >3.7%, expect more selling. If it cools, relief rally. Decides next US move." },
+    { "id": "opp-3", "title": "S&P 500 drawdown at 5.7% — approaching trigger", "type": "upcoming", "badge": "Monitor", "detail": "Deploy US reserve at -10% from 52W high. Currently at 5.7%. CPI and NVDA earnings could push it either way." }
   ]
 }
